@@ -1,0 +1,47 @@
+@startuml
+
+package TodoDomain.Models.Memo {
+    class Memo
+    interface MemoRepository
+
+    MemoRepository -- Memo : use for update >
+}
+
+package TodoApplication.Memo {
+    class UpdateMemoUseCase
+    class MemoData
+    class MemoFactory
+
+    UpdateMemoUseCase -- MemoData : use for create Memo >
+    MemoFactory -- MemoData : use >
+    MemoFactory -- Memo : create >
+    UpdateMemoUseCase --> MemoRepository : use
+}
+
+package Presentation.Memo {
+    package Update {
+        class MemoUpdateController
+        class MemoUpdateModel
+        class MemoDataFactory
+        package Update.View {
+            class ViewC
+        }
+        MemoUpdateController --> MemoUpdateModel : use to apply data to views
+        MemoUpdateController --> ViewC : show
+        MemoDataFactory -- MemoUpdateModel : use to create MemoData >
+
+        MemoUpdateController --> UpdateMemoUseCase
+        MemoUpdateController -- MemoData : pass to usecase / use to create MemoUpdateModel >
+        MemoDataFactory -- MemoData : create >
+    }
+}
+package Infrastructure.Memo {
+    class InMemoryMemoRepository implements MemoRepository
+    class InMemoryMemoEntity
+
+    InMemoryMemoRepository -- InMemoryMemoEntity : use for update >
+    InMemoryMemoRepository -- Memo : receive from use case >
+    InMemoryMemoEntity -- Memo : use for instantiate >
+}
+
+@enduml
