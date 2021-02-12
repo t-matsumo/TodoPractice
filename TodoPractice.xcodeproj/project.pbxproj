@@ -45,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC587B9625D6E8D8008FB14F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FC587B9A25D6E917008FB14F /* UpdateMemoUseCase.plantuml */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateMemoUseCase.plantuml; sourceTree = "<group>"; };
+		FC587B9B25D6E917008FB14F /* CreateMemoUseCase.plantuml */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateMemoUseCase.plantuml; sourceTree = "<group>"; };
+		FC587B9C25D6E917008FB14F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FC587B9D25D6E917008FB14F /* GetMemosUseCase.plantuml */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetMemosUseCase.plantuml; sourceTree = "<group>"; };
+		FC587B9F25D6E917008FB14F /* MemoListViewController.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MemoListViewController.png; sourceTree = "<group>"; };
 		FCF2691725D5500A00512F39 /* TodoPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF2691A25D5500A00512F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF2691C25D5500A00512F39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,9 +102,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC587B9725D6E917008FB14F /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				FC587B9825D6E917008FB14F /* class-diagram */,
+				FC587B9E25D6E917008FB14F /* image */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		FC587B9825D6E917008FB14F /* class-diagram */ = {
+			isa = PBXGroup;
+			children = (
+				FC587B9C25D6E917008FB14F /* README.md */,
+				FC587B9925D6E917008FB14F /* memo */,
+			);
+			path = "class-diagram";
+			sourceTree = "<group>";
+		};
+		FC587B9925D6E917008FB14F /* memo */ = {
+			isa = PBXGroup;
+			children = (
+				FC587B9A25D6E917008FB14F /* UpdateMemoUseCase.plantuml */,
+				FC587B9B25D6E917008FB14F /* CreateMemoUseCase.plantuml */,
+				FC587B9D25D6E917008FB14F /* GetMemosUseCase.plantuml */,
+			);
+			path = memo;
+			sourceTree = "<group>";
+		};
+		FC587B9E25D6E917008FB14F /* image */ = {
+			isa = PBXGroup;
+			children = (
+				FC587B9F25D6E917008FB14F /* MemoListViewController.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		FCF2690E25D5500A00512F39 = {
 			isa = PBXGroup;
 			children = (
+				FC587B9725D6E917008FB14F /* docs */,
+				FC587B9625D6E8D8008FB14F /* README.md */,
 				FCF2691925D5500A00512F39 /* TodoPractice */,
 				FCF2693025D5500C00512F39 /* TodoPracticeTests */,
 				FCF2693B25D5500C00512F39 /* TodoPracticeUITests */,
