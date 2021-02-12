@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MemoRepository {
-    func getMemos() -> [Memo]
+    func getMemos(completion: @escaping ([Memo]) -> Void)
 }

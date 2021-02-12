@@ -4,34 +4,40 @@ package TodoDomain.Models.Memo {
     class Memo
     interface MemoRepository
 
-    MemoRepository -- Memo : fetch >
+    MemoRepository --> Memo : fetch
 }
 
 package TodoApplication.Memo {
     class GetMemosUseCase
     class MemoData
 
-    GetMemosUseCase -- MemoData : create list >
-    MemoData -- Memo : use for instantiation >
+    GetMemosUseCase --> MemoData : create list
+    MemoData --> Memo : use for instantiation
 
-    GetMemosUseCase --> MemoRepository : use to get Memo
-    GetMemosUseCase -- Memo : recieve from repository >
+    GetMemosUseCase o-- MemoRepository : use to get Memo
+    GetMemosUseCase --> Memo : recieve from repository
 }
 
 package Presentation.Memo {
     package List {
         class MemoListController
-        class MemoListModel
-        package View {
-            class ViewA
-        }
+        class MemoListViewModel
+        class MemoCell
+        class MemoCellData
+        class TableView
 
-        MemoListController --> MemoListModel : use to apply data to views
-        MemoListController --> ViewA : show
+        MemoListViewModel o-- MemoCellData
+        MemoListViewModel --> MemoData : use for instantiation
 
-        MemoListController --> GetMemosUseCase
-        MemoListController -- MemoData : recieve from use case >
-        MemoListModel -- MemoData : use for instantiation >
+        TableView --> MemoCell : show
+        MemoCell --> MemoCellData : show
+
+        MemoListController o-- MemoListViewModel : use to apply data to views
+        MemoListController o-- TableView
+        MemoListController --> MemoCell : set Data
+
+        MemoListController o-- GetMemosUseCase
+        MemoListController --> MemoData : recieve from use case
     }
 }
 package Infrastructure.Memo {
@@ -39,10 +45,10 @@ package Infrastructure.Memo {
     class MemoFactory
     class InMemoryMemoEntity
 
-    InMemoryMemoRepository -- InMemoryMemoEntity : fetch >
-    InMemoryMemoRepository -- MemoFactory : use >
-    MemoFactory -- InMemoryMemoEntity : use >
-    MemoFactory -- Memo : create >
+    InMemoryMemoRepository --> InMemoryMemoEntity : fetch
+    InMemoryMemoRepository --> MemoFactory : use
+    MemoFactory --> InMemoryMemoEntity : use
+    MemoFactory --> Memo : create
 }
 
 @enduml

@@ -8,9 +8,11 @@
 import Foundation
 
 class InMemoryMemoRepository : MemoRepository {
-    let database = (1...40).compactMap { n in Memo(title: "title\(n)", content: "content\(n)") }
-    func getMemos() -> [Memo] {
-        sleep(2)
-        return self.database
+    let database = (1...40).compactMap { n in InMemoryMemoEntity(title: "title\(n)", content: "content\(n)") }
+    func getMemos(completion: @escaping ([Memo]) -> Void) {
+        DispatchQueue.global().async { [weak self] in
+            sleep(2)
+            completion(self?.database.compactMap(MemoFactoryForInMemoryEntity.create) ?? [])
+        }
     }
 }

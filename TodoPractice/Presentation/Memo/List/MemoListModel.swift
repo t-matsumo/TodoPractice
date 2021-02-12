@@ -8,5 +8,9 @@
 import Foundation
 
 class MemoListModel {
-    var memoDataArray: [MemoData] = []
+    var memoCellDataArray: [MemoCellData] = []
+    
+    func numberOfRowsInSection() -> Int {
+        self.memoCellDataArray.count
+    }
 }

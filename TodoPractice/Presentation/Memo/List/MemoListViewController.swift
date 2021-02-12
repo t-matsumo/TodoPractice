@@ -17,19 +17,21 @@ class MemoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            self.memoListModel.memoDataArray = self.getMemoUseCase.getMemos().map(MemoData.init)
+        setupViews()
+        
+        self.getMemoUseCase.getMemos(completion: { [weak self](memoDataList) in
+            // Modelの中でやるべきでは？
+            self?.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
-        }
-        
+        })
+    }
+    
+    func setupViews() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.register(UINib(nibName: "MemoCell", bundle: nil), forCellReuseIdentifier: MemoCell.reuseId)
         
         addButton.layer.borderColor = UIColor.systemBlue.cgColor
         addButton.layer.borderWidth = 2.0
@@ -42,14 +44,13 @@ extension MemoListViewController : UITableViewDelegate {
 
 extension MemoListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.memoListModel.memoDataArray.count
+        self.memoListModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell.init(style: .subtitle, reuseIdentifier: "Cell")
-        let memo = self.memoListModel.memoDataArray[indexPath.row]
-        cell.textLabel?.text = memo.title
-        cell.detailTextLabel?.text = memo.content
+        let cell = tableView.dequeueReusableCell(withIdentifier: MemoCell.reuseId, for: indexPath) as! MemoCell
+        let memo = self.memoListModel.memoCellDataArray[indexPath.row]
+        cell.setUpWith(memoCellData: memo)
         return cell
     }
 }

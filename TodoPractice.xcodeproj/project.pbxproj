@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC587BA325D6F2A6008FB14F /* InMemoryMemoEntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BA225D6F2A6008FB14F /* InMemoryMemoEntityTest.swift */; };
+		FC587BAB25D6F345008FB14F /* InMemoryMemoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BAA25D6F345008FB14F /* InMemoryMemoEntity.swift */; };
+		FC587BB025D6F3EA008FB14F /* MemoFactoryForInMemoryEntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BAF25D6F3EA008FB14F /* MemoFactoryForInMemoryEntityTest.swift */; };
+		FC587BB525D6F488008FB14F /* MemoFactoryForInMemoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BB425D6F488008FB14F /* MemoFactoryForInMemoryEntity.swift */; };
+		FC587BBA25D6F68C008FB14F /* MemoCellDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BB925D6F68C008FB14F /* MemoCellDataTest.swift */; };
+		FC587BBF25D6F79A008FB14F /* MemoCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BBE25D6F79A008FB14F /* MemoCellData.swift */; };
+		FC587BC525D707C6008FB14F /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC587BC325D707C6008FB14F /* MemoCell.swift */; };
+		FC587BC625D707C6008FB14F /* MemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC587BC425D707C6008FB14F /* MemoCell.xib */; };
 		FCF2691B25D5500A00512F39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2691A25D5500A00512F39 /* AppDelegate.swift */; };
 		FCF2691D25D5500A00512F39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2691C25D5500A00512F39 /* SceneDelegate.swift */; };
 		FCF2692425D5500B00512F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF2692325D5500B00512F39 /* Assets.xcassets */; };
@@ -51,6 +59,14 @@
 		FC587B9C25D6E917008FB14F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FC587B9D25D6E917008FB14F /* GetMemosUseCase.plantuml */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetMemosUseCase.plantuml; sourceTree = "<group>"; };
 		FC587B9F25D6E917008FB14F /* MemoListViewController.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MemoListViewController.png; sourceTree = "<group>"; };
+		FC587BA225D6F2A6008FB14F /* InMemoryMemoEntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryMemoEntityTest.swift; sourceTree = "<group>"; };
+		FC587BAA25D6F345008FB14F /* InMemoryMemoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryMemoEntity.swift; sourceTree = "<group>"; };
+		FC587BAF25D6F3EA008FB14F /* MemoFactoryForInMemoryEntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFactoryForInMemoryEntityTest.swift; sourceTree = "<group>"; };
+		FC587BB425D6F488008FB14F /* MemoFactoryForInMemoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFactoryForInMemoryEntity.swift; sourceTree = "<group>"; };
+		FC587BB925D6F68C008FB14F /* MemoCellDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCellDataTest.swift; sourceTree = "<group>"; };
+		FC587BBE25D6F79A008FB14F /* MemoCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCellData.swift; sourceTree = "<group>"; };
+		FC587BC325D707C6008FB14F /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
+		FC587BC425D707C6008FB14F /* MemoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoCell.xib; sourceTree = "<group>"; };
 		FCF2691725D5500A00512F39 /* TodoPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF2691A25D5500A00512F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF2691C25D5500A00512F39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +154,23 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		FC587BA025D6F271008FB14F /* Infrastracture */ = {
+			isa = PBXGroup;
+			children = (
+				FC587BA125D6F28F008FB14F /* Memo */,
+			);
+			path = Infrastracture;
+			sourceTree = "<group>";
+		};
+		FC587BA125D6F28F008FB14F /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				FC587BA225D6F2A6008FB14F /* InMemoryMemoEntityTest.swift */,
+				FC587BAF25D6F3EA008FB14F /* MemoFactoryForInMemoryEntityTest.swift */,
+			);
+			path = Memo;
+			sourceTree = "<group>";
+		};
 		FCF2690E25D5500A00512F39 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +212,7 @@
 		FCF2693025D5500C00512F39 /* TodoPracticeTests */ = {
 			isa = PBXGroup;
 			children = (
+				FC587BA025D6F271008FB14F /* Infrastracture */,
 				FCF269D325D57DF200512F39 /* Presentation */,
 				FCF269AF25D5649100512F39 /* TodoApplication */,
 				FCF2695325D553B900512F39 /* TodoDomain */,
@@ -258,6 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				FCF2699425D561AD00512F39 /* InMemoryMemoRepository.swift */,
+				FC587BB425D6F488008FB14F /* MemoFactoryForInMemoryEntity.swift */,
+				FC587BAA25D6F345008FB14F /* InMemoryMemoEntity.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
@@ -318,6 +354,9 @@
 				FCF269C925D57D8200512F39 /* MemoListViewController.swift */,
 				FCF269CE25D57DC000512F39 /* MemoListModel.swift */,
 				FCF269DF25D586B200512F39 /* MemoListViewController.storyboard */,
+				FC587BBE25D6F79A008FB14F /* MemoCellData.swift */,
+				FC587BC325D707C6008FB14F /* MemoCell.swift */,
+				FC587BC425D707C6008FB14F /* MemoCell.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -342,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				FCF269D725D57E2900512F39 /* MemoListModelTest.swift */,
+				FC587BB925D6F68C008FB14F /* MemoCellDataTest.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -452,6 +492,7 @@
 				FCF2692725D5500B00512F39 /* LaunchScreen.storyboard in Resources */,
 				FCF2692425D5500B00512F39 /* Assets.xcassets in Resources */,
 				FCF269E025D586B200512F39 /* MemoListViewController.storyboard in Resources */,
+				FC587BC625D707C6008FB14F /* MemoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,12 +517,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC587BAB25D6F345008FB14F /* InMemoryMemoEntity.swift in Sources */,
+				FC587BBF25D6F79A008FB14F /* MemoCellData.swift in Sources */,
 				FCF2691B25D5500A00512F39 /* AppDelegate.swift in Sources */,
 				FCF269CA25D57D8200512F39 /* MemoListViewController.swift in Sources */,
 				FCF2691D25D5500A00512F39 /* SceneDelegate.swift in Sources */,
 				FCF269AB25D5648000512F39 /* MemoData.swift in Sources */,
 				FCF2696E25D55AE000512F39 /* MemoRepository.swift in Sources */,
 				FCF2699525D561AD00512F39 /* InMemoryMemoRepository.swift in Sources */,
+				FC587BC525D707C6008FB14F /* MemoCell.swift in Sources */,
+				FC587BB525D6F488008FB14F /* MemoFactoryForInMemoryEntity.swift in Sources */,
 				FCF269C225D57A7500512F39 /* GetMemoUseCase.swift in Sources */,
 				FCF2696925D555F800512F39 /* Memo.swift in Sources */,
 				FCF269CF25D57DC000512F39 /* MemoListModel.swift in Sources */,
@@ -493,7 +538,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCF2693225D5500C00512F39 /* TodoPracticeTests.swift in Sources */,
+				FC587BBA25D6F68C008FB14F /* MemoCellDataTest.swift in Sources */,
 				FCF269B225D564B900512F39 /* MemoDataTest.swift in Sources */,
+				FC587BB025D6F3EA008FB14F /* MemoFactoryForInMemoryEntityTest.swift in Sources */,
+				FC587BA325D6F2A6008FB14F /* InMemoryMemoEntityTest.swift in Sources */,
 				FCF269BA25D5757E00512F39 /* GetMemoListUseCaseTest.swift in Sources */,
 				FCF269D825D57E2900512F39 /* MemoListModelTest.swift in Sources */,
 				FCF2695F25D5546100512F39 /* MemoTest.swift in Sources */,
