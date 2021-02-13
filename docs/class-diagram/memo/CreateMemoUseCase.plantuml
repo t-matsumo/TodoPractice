@@ -2,9 +2,11 @@
 
 package TodoDomain.Models.Memo {
     class Memo
+    class MemoSpecification
     interface MemoRepository
 
     MemoRepository --> Memo : use for create
+    MemoSpecification --> MemoData : validate
 }
 
 package TodoApplication.Memo {
@@ -16,6 +18,7 @@ package TodoApplication.Memo {
     MemoFactory --> MemoData : use
     MemoFactory --> Memo : create
     CreateMemoUseCase o-- MemoRepository : use
+    CreateMemoUseCase --> MemoSpecification : use
 }
 
 package Presentation.Memo {
