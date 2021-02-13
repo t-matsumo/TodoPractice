@@ -4,7 +4,7 @@ package TodoDomain.Models.Memo {
     class Memo
     interface MemoRepository
 
-    MemoRepository -- Memo : use for update >
+    MemoRepository --> Memo : use for update
 }
 
 package TodoApplication.Memo {
@@ -12,36 +12,28 @@ package TodoApplication.Memo {
     class MemoData
     class MemoFactory
 
-    UpdateMemoUseCase -- MemoData : use for create Memo >
-    MemoFactory -- MemoData : use >
-    MemoFactory -- Memo : create >
-    UpdateMemoUseCase --> MemoRepository : use
+    UpdateMemoUseCase --> MemoData : use for create Memo
+    MemoFactory --> MemoData : use
+    MemoFactory --> Memo : create
+    UpdateMemoUseCase o-- MemoRepository : use
 }
 
 package Presentation.Memo {
     package Update {
         class MemoUpdateController
-        class MemoUpdateModel
-        class MemoDataFactory
-        package Update.View {
-            class ViewC
-        }
-        MemoUpdateController --> MemoUpdateModel : use to apply data to views
-        MemoUpdateController --> ViewC : show
-        MemoDataFactory -- MemoUpdateModel : use to create MemoData >
-
-        MemoUpdateController --> UpdateMemoUseCase
-        MemoUpdateController -- MemoData : pass to usecase / use to create MemoUpdateModel >
-        MemoDataFactory -- MemoData : create >
+        class MemoUpdateViewModel
+        MemoUpdateController o-- MemoUpdateViewModel : use to apply data to views
+        MemoUpdateController o-- UpdateMemoUseCase
+        MemoUpdateController --> MemoData : pass to usecase / use to create MemoUpdateViewModel
     }
 }
 package Infrastructure.Memo {
     class InMemoryMemoRepository implements MemoRepository
     class InMemoryMemoEntity
 
-    InMemoryMemoRepository -- InMemoryMemoEntity : use for update >
-    InMemoryMemoRepository -- Memo : receive from use case >
-    InMemoryMemoEntity -- Memo : use for instantiate >
+    InMemoryMemoRepository --> InMemoryMemoEntity : use for update
+    InMemoryMemoRepository --> Memo : receive from use case
+    InMemoryMemoEntity --> Memo : use for instantiate
 }
 
 @enduml

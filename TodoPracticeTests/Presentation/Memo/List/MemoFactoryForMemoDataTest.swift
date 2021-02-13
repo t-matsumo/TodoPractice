@@ -15,5 +15,15 @@ class MemoFactoryForMemoDataTest: XCTestCase {
         let memo = MemoFactoryForMemoData.create(memoData: memoData)
         XCTAssertEqual(memo.title, originalMemo.title)
         XCTAssertEqual(memo.content, originalMemo.content)
+        XCTAssertNil(memo.id)
+    }
+    
+    func testExampleWithId() throws {
+        let originalMemo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
+        let memoData = MemoData(title: originalMemo.title, content: originalMemo.content, id: originalMemo.id)
+        let memo = MemoFactoryForMemoData.create(memoData: memoData)
+        XCTAssertEqual(memo.title, originalMemo.title)
+        XCTAssertEqual(memo.content, originalMemo.content)
+        XCTAssertEqual(memo.id, originalMemo.id)
     }
 }

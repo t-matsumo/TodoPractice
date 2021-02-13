@@ -15,5 +15,6 @@ class MemoDataTest: XCTestCase {
         let memoData = MemoData(title: title, content: content)
         XCTAssertEqual(memoData.title, title)
         XCTAssertEqual(memoData.content, content)
+        XCTAssertNil(memoData.id)
     }
 }

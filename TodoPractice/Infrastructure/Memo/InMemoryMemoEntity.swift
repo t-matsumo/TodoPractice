@@ -10,15 +10,17 @@ import Foundation
 class InMemoryMemoEntity {
     let title: String
     let content: String
-    let id = NSUUID().uuidString
+    let id: String
     
     init(title: String, content: String) {
         self.title = title
         self.content = content
+        self.id = NSUUID().uuidString
     }
     
     init(memo: Memo) {
         self.title = memo.title
         self.content = memo.content
+        self.id = memo.id ?? NSUUID().uuidString
     }
 }

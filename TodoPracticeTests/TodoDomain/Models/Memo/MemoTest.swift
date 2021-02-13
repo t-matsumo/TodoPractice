@@ -16,6 +16,7 @@ class MemoTest: XCTestCase {
         let memo = Memo(title: self.title, content: self.content)
         XCTAssertEqual(memo.title, title)
         XCTAssertEqual(memo.content, content)
+        XCTAssertNil(memo.id)
     }
 
     func testTitleIsAtLeastOneCharacter() throws {

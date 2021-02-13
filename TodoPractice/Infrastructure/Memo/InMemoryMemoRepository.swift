@@ -24,4 +24,16 @@ class InMemoryMemoRepository : MemoRepository {
             InMemoryMemoRepository.database.append(InMemoryMemoEntity(memo: memo))
         }
     }
+    
+    func updateMemo(memo: Memo) {
+        InMemoryMemoRepository.dataAccessQueue.async {
+            sleep(1)
+            let index = InMemoryMemoRepository.database.firstIndex { entity -> Bool in
+                entity.id == memo.id
+            }
+            if let index = index {
+                InMemoryMemoRepository.database[index] = InMemoryMemoEntity(memo: memo)
+            }
+        }
+    }
 }

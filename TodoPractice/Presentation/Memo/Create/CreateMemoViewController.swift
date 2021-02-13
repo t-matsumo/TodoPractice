@@ -14,6 +14,10 @@ class CreateMemoViewController: UIViewController {
     private weak var delegate: CreateMemoViewControllerDelegate?
     
     private let saveMemoUseCase = SaveMemoUseCase(repository: InMemoryMemoRepository())
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
 
 extension CreateMemoViewController {

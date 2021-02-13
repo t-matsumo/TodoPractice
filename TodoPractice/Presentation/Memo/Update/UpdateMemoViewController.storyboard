@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Update Memo View Controller-->
+        <scene sceneID="X8t-5c-IAM">
+            <objects>
+                <viewController storyboardIdentifier="UpdateMemoViewController" id="5KC-Ce-l6c" customClass="UpdateMemoViewController" customModule="TodoPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Of9-Fr-Jdw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kh7-AS-xdE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="変更" id="eG6-gW-0Ff">
+                                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="ucf-uQ-kUH">
+                                            <connections>
+                                                <action selector="onTapCloseButton:" destination="5KC-Ce-l6c" id="xLZ-g8-Me9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6G-Gc-tQF">
+                                <rect key="frame" x="24" y="112" width="82" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnH-qz-VTf">
+                                <rect key="frame" x="24" y="202" width="41" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P8I-Vd-eiG">
+                                <rect key="frame" x="24" y="144" width="366" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c55-pl-mVu">
+                                <rect key="frame" x="24" y="234" width="366" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1文字以上200文字以内" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LW-e7-eZ4">
+                                <rect key="frame" x="114" y="119.5" width="126" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cU8-Vo-8tE">
+                                <rect key="frame" x="328" y="292" width="62" height="30"/>
+                                <state key="normal" title="変更する"/>
+                                <connections>
+                                    <action selector="onTapUpdateButton:" destination="5KC-Ce-l6c" eventType="touchUpInside" id="A7T-85-iEw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="b3e-BX-hgH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4LW-e7-eZ4" firstAttribute="firstBaseline" secondItem="D6G-Gc-tQF" secondAttribute="firstBaseline" id="2Zk-fU-6sz"/>
+                            <constraint firstItem="4LW-e7-eZ4" firstAttribute="leading" secondItem="D6G-Gc-tQF" secondAttribute="trailing" constant="8" id="5pe-5a-Y4Z"/>
+                            <constraint firstItem="P8I-Vd-eiG" firstAttribute="leading" secondItem="b3e-BX-hgH" secondAttribute="leading" constant="24" id="GCc-1I-Fhg"/>
+                            <constraint firstItem="kh7-AS-xdE" firstAttribute="leading" secondItem="Of9-Fr-Jdw" secondAttribute="leading" id="Kyv-wk-jMH"/>
+                            <constraint firstItem="cU8-Vo-8tE" firstAttribute="top" secondItem="c55-pl-mVu" secondAttribute="bottom" constant="24" id="McH-Iz-oVN"/>
+                            <constraint firstItem="kh7-AS-xdE" firstAttribute="top" secondItem="b3e-BX-hgH" secondAttribute="top" id="Mob-dI-h6C"/>
+                            <constraint firstItem="b3e-BX-hgH" firstAttribute="trailing" secondItem="cU8-Vo-8tE" secondAttribute="trailing" constant="24" id="N6h-8e-hQQ"/>
+                            <constraint firstItem="b3e-BX-hgH" firstAttribute="trailing" secondItem="P8I-Vd-eiG" secondAttribute="trailing" constant="24" id="Xhr-cq-omO"/>
+                            <constraint firstItem="D6G-Gc-tQF" firstAttribute="top" secondItem="kh7-AS-xdE" secondAttribute="bottom" constant="24" id="aIg-NF-lWl"/>
+                            <constraint firstItem="b3e-BX-hgH" firstAttribute="trailing" secondItem="kh7-AS-xdE" secondAttribute="trailing" id="bEc-L9-gqq"/>
+                            <constraint firstItem="D6G-Gc-tQF" firstAttribute="leading" secondItem="b3e-BX-hgH" secondAttribute="leading" constant="24" id="cFM-Oj-16D"/>
+                            <constraint firstItem="MnH-qz-VTf" firstAttribute="leading" secondItem="b3e-BX-hgH" secondAttribute="leading" constant="24" id="hNn-3I-Edf"/>
+                            <constraint firstItem="b3e-BX-hgH" firstAttribute="trailing" secondItem="c55-pl-mVu" secondAttribute="trailing" constant="24" id="j6J-Rr-Oe4"/>
+                            <constraint firstItem="MnH-qz-VTf" firstAttribute="top" secondItem="P8I-Vd-eiG" secondAttribute="bottom" constant="24" id="j7A-wl-GaI"/>
+                            <constraint firstItem="c55-pl-mVu" firstAttribute="top" secondItem="MnH-qz-VTf" secondAttribute="bottom" constant="8" id="k0v-qF-0SN"/>
+                            <constraint firstItem="c55-pl-mVu" firstAttribute="leading" secondItem="b3e-BX-hgH" secondAttribute="leading" constant="24" id="tyP-cg-ZmS"/>
+                            <constraint firstItem="P8I-Vd-eiG" firstAttribute="top" secondItem="D6G-Gc-tQF" secondAttribute="bottom" constant="8" id="yqe-hH-rvj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentField" destination="c55-pl-mVu" id="YWr-4R-BwB"/>
+                        <outlet property="titleField" destination="P8I-Vd-eiG" id="qvQ-nT-E1h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WvD-I5-GeM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-133" y="146"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

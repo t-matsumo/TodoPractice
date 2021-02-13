@@ -14,5 +14,6 @@ class MemoFactoryForInMemoryEntityTest: XCTestCase {
         let memo = MemoFactoryForInMemoryEntity.create(entity: entity)
         XCTAssertEqual(memo.title, entity.title)
         XCTAssertEqual(memo.content, entity.content)
+        XCTAssertNotNil(memo.id)
     }
 }

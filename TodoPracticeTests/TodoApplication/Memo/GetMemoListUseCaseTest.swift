@@ -10,17 +10,22 @@ import XCTest
 
 class GetMemoListUseCaseTest: XCTestCase {
     private class MockRepository : MemoRepository {
-        func saveMemo(memo: Memo) {
-            
+        let memoArray: [Memo]
+        
+        init(memoArray: [Memo]) {
+            self.memoArray = memoArray
         }
         
         func getMemos(completion: @escaping ([Memo]) -> Void) {
             completion(self.memoArray)
         }
         
-        let memoArray: [Memo]
-        init(memoArray: [Memo]) {
-            self.memoArray = memoArray
+        func saveMemo(memo: Memo) {
+            
+        }
+        
+        func updateMemo(memo: Memo) {
+            
         }
     }
     

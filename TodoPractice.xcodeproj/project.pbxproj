@@ -24,6 +24,13 @@
 		FC87057525D79ED100240C2D /* CreateMemoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87057425D79ED100240C2D /* CreateMemoViewControllerDelegate.swift */; };
 		FC87057A25D7AA7E00240C2D /* MemoSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87057925D7AA7E00240C2D /* MemoSpecification.swift */; };
 		FC87057F25D7AA9400240C2D /* MemoSpecificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87057E25D7AA9400240C2D /* MemoSpecificationTest.swift */; };
+		FCCD6F4525D8017B005E02B0 /* UpdateMemoUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD6F4425D8017B005E02B0 /* UpdateMemoUseCaseTest.swift */; };
+		FCCD6F4B25D803DA005E02B0 /* UpdateMemoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD6F4A25D803DA005E02B0 /* UpdateMemoUseCase.swift */; };
+		FCCD6F5325D80A9A005E02B0 /* UpdateMemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD6F5225D80A9A005E02B0 /* UpdateMemoViewModel.swift */; };
+		FCCD6F5925D80AC4005E02B0 /* UpdateMemoViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD6F5825D80AC4005E02B0 /* UpdateMemoViewModelTest.swift */; };
+		FCCD6F6125D80C19005E02B0 /* UpdateMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD6F6025D80C19005E02B0 /* UpdateMemoViewController.swift */; };
+		FCCD6F6625D80C23005E02B0 /* UpdateMemoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCCD6F6525D80C23005E02B0 /* UpdateMemoViewController.storyboard */; };
+		FCCD6F6B25D80EAA005E02B0 /* UpdateMemoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD6F6A25D80EAA005E02B0 /* UpdateMemoViewControllerDelegate.swift */; };
 		FCF2691B25D5500A00512F39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2691A25D5500A00512F39 /* AppDelegate.swift */; };
 		FCF2691D25D5500A00512F39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2691C25D5500A00512F39 /* SceneDelegate.swift */; };
 		FCF2692425D5500B00512F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF2692325D5500B00512F39 /* Assets.xcassets */; };
@@ -84,6 +91,13 @@
 		FC87057425D79ED100240C2D /* CreateMemoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewControllerDelegate.swift; sourceTree = "<group>"; };
 		FC87057925D7AA7E00240C2D /* MemoSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSpecification.swift; sourceTree = "<group>"; };
 		FC87057E25D7AA9400240C2D /* MemoSpecificationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSpecificationTest.swift; sourceTree = "<group>"; };
+		FCCD6F4425D8017B005E02B0 /* UpdateMemoUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMemoUseCaseTest.swift; sourceTree = "<group>"; };
+		FCCD6F4A25D803DA005E02B0 /* UpdateMemoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMemoUseCase.swift; sourceTree = "<group>"; };
+		FCCD6F5225D80A9A005E02B0 /* UpdateMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMemoViewModel.swift; sourceTree = "<group>"; };
+		FCCD6F5825D80AC4005E02B0 /* UpdateMemoViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMemoViewModelTest.swift; sourceTree = "<group>"; };
+		FCCD6F6025D80C19005E02B0 /* UpdateMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMemoViewController.swift; sourceTree = "<group>"; };
+		FCCD6F6525D80C23005E02B0 /* UpdateMemoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UpdateMemoViewController.storyboard; sourceTree = "<group>"; };
+		FCCD6F6A25D80EAA005E02B0 /* UpdateMemoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMemoViewControllerDelegate.swift; sourceTree = "<group>"; };
 		FCF2691725D5500A00512F39 /* TodoPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF2691A25D5500A00512F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF2691C25D5500A00512F39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +216,26 @@
 			children = (
 			);
 			path = Create;
+			sourceTree = "<group>";
+		};
+		FCCD6F4925D803C6005E02B0 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				FCCD6F4A25D803DA005E02B0 /* UpdateMemoUseCase.swift */,
+				FCCD6F5225D80A9A005E02B0 /* UpdateMemoViewModel.swift */,
+				FCCD6F6025D80C19005E02B0 /* UpdateMemoViewController.swift */,
+				FCCD6F6525D80C23005E02B0 /* UpdateMemoViewController.storyboard */,
+				FCCD6F6A25D80EAA005E02B0 /* UpdateMemoViewControllerDelegate.swift */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		FCCD6F5725D80AB2005E02B0 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				FCCD6F5825D80AC4005E02B0 /* UpdateMemoViewModelTest.swift */,
+			);
+			path = Update;
 			sourceTree = "<group>";
 		};
 		FCF2690E25D5500A00512F39 = {
@@ -365,6 +399,7 @@
 				FCF269B125D564B900512F39 /* MemoDataTest.swift */,
 				FCF269B925D5757E00512F39 /* GetMemoListUseCaseTest.swift */,
 				FC87054F25D78AB500240C2D /* SaveMemoUseCaseTest.swift */,
+				FCCD6F4425D8017B005E02B0 /* UpdateMemoUseCaseTest.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
@@ -380,6 +415,7 @@
 		FCF269C725D57D5A00512F39 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				FCCD6F4925D803C6005E02B0 /* Update */,
 				FC87055F25D794BA00240C2D /* Create */,
 				FCF269C825D57D6100512F39 /* List */,
 			);
@@ -410,6 +446,7 @@
 		FCF269D425D57DFC00512F39 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				FCCD6F5725D80AB2005E02B0 /* Update */,
 				FC87056025D794E500240C2D /* Create */,
 				FCF269D525D57E0000512F39 /* List */,
 			);
@@ -533,6 +570,7 @@
 				FC87057025D7968000240C2D /* CreateMemoViewController.storyboard in Resources */,
 				FCF2692425D5500B00512F39 /* Assets.xcassets in Resources */,
 				FCF269E025D586B200512F39 /* MemoListViewController.storyboard in Resources */,
+				FCCD6F6625D80C23005E02B0 /* UpdateMemoViewController.storyboard in Resources */,
 				FC587BC625D707C6008FB14F /* MemoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC587BAB25D6F345008FB14F /* InMemoryMemoEntity.swift in Sources */,
+				FCCD6F5325D80A9A005E02B0 /* UpdateMemoViewModel.swift in Sources */,
 				FC587BBF25D6F79A008FB14F /* MemoCellData.swift in Sources */,
 				FCF2691B25D5500A00512F39 /* AppDelegate.swift in Sources */,
 				FCF269CA25D57D8200512F39 /* MemoListViewController.swift in Sources */,
@@ -573,8 +612,11 @@
 				FC87055B25D78E6F00240C2D /* SaveMemoUseCase.swift in Sources */,
 				FC87054325D7842B00240C2D /* MemoFactoryForMemoData.swift in Sources */,
 				FCF269C225D57A7500512F39 /* GetMemoUseCase.swift in Sources */,
+				FCCD6F6125D80C19005E02B0 /* UpdateMemoViewController.swift in Sources */,
+				FCCD6F4B25D803DA005E02B0 /* UpdateMemoUseCase.swift in Sources */,
 				FC87057A25D7AA7E00240C2D /* MemoSpecification.swift in Sources */,
 				FCF2696925D555F800512F39 /* Memo.swift in Sources */,
+				FCCD6F6B25D80EAA005E02B0 /* UpdateMemoViewControllerDelegate.swift in Sources */,
 				FCF269CF25D57DC000512F39 /* MemoListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,10 +626,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC587BBA25D6F68C008FB14F /* MemoCellDataTest.swift in Sources */,
+				FCCD6F5925D80AC4005E02B0 /* UpdateMemoViewModelTest.swift in Sources */,
 				FC87053E25D7838600240C2D /* MemoFactoryForMemoDataTest.swift in Sources */,
 				FCF269B225D564B900512F39 /* MemoDataTest.swift in Sources */,
 				FC587BB025D6F3EA008FB14F /* MemoFactoryForInMemoryEntityTest.swift in Sources */,
 				FC587BA325D6F2A6008FB14F /* InMemoryMemoEntityTest.swift in Sources */,
+				FCCD6F4525D8017B005E02B0 /* UpdateMemoUseCaseTest.swift in Sources */,
 				FCF269BA25D5757E00512F39 /* GetMemoListUseCaseTest.swift in Sources */,
 				FCF269D825D57E2900512F39 /* MemoListModelTest.swift in Sources */,
 				FCF2695F25D5546100512F39 /* MemoTest.swift in Sources */,

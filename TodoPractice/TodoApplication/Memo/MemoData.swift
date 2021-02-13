@@ -10,9 +10,11 @@ import Foundation
 class MemoData {
     let title: String
     let content: String
+    let id: String?
     
-    init(title: String, content: String) {
+    init(title: String, content: String, id: String? = nil) {
         self.title = title
         self.content = content
+        self.id = id
     }
 }

@@ -16,12 +16,16 @@ class SaveMemoUseCaseTest: XCTestCase {
             self.memoArray = memoArray
         }
         
+        func getMemos(completion: @escaping ([Memo]) -> Void) {
+            completion(self.memoArray)
+        }
+        
         func saveMemo(memo: Memo) {
             self.memoArray.append(memo)
         }
         
-        func getMemos(completion: @escaping ([Memo]) -> Void) {
-            completion(self.memoArray)
+        func updateMemo(memo: Memo) {
+            
         }
     }
     

@@ -28,7 +28,13 @@ class MemoListViewController: UIViewController {
 }
 
 extension MemoListViewController : UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let memo = self.memoListModel.memoCellDataArray[indexPath.row]
+        let memoData = MemoData(title: memo.title, content: memo.content, id: memo.id)
+        let vc = UpdateMemoViewController.instantiate(memoData: memoData, delegate: self)
+        present(vc, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension MemoListViewController : UITableViewDataSource {
@@ -56,6 +62,16 @@ extension MemoListViewController : CreateMemoViewControllerDelegate {
     }
 }
 
+extension MemoListViewController : UpdateMemoViewControllerDelegate {
+    func onTapCloseButton(sender: UpdateMemoViewController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+    
+    func didUpdateMemo(sender: UpdateMemoViewController) {
+        loadMemos()
+        sender.dismiss(animated: true, completion: nil)
+    }
+}
 extension MemoListViewController {
     private func setupViews() {
         self.tableView.delegate = self
