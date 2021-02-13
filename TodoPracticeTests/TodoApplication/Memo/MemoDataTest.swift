@@ -10,13 +10,10 @@ import XCTest
 
 class MemoDataTest: XCTestCase {
     func testInstantiate() throws {
-        guard let memo = Memo(title: "title", content: "content") else {
-            XCTAssertTrue(false, "Instantiation erroe")
-            return
-        }
-
-        let memoData = MemoData(memo: memo)
-        XCTAssertEqual(memoData.title, memo.title)
-        XCTAssertEqual(memoData.content, memo.content)
+        let title = "title"
+        let content = "content"
+        let memoData = MemoData(title: title, content: content)
+        XCTAssertEqual(memoData.title, title)
+        XCTAssertEqual(memoData.content, content)
     }
 }

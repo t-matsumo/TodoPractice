@@ -11,8 +11,8 @@ class MemoData {
     let title: String
     let content: String
     
-    init(memo: Memo) {
-        self.title = memo.title
-        self.content = memo.content
+    init(title: String, content: String) {
+        self.title = title
+        self.content = content
     }
 }

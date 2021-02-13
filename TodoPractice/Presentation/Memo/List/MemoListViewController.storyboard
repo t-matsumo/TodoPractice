@@ -33,6 +33,9 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapAddButton:" destination="2Jb-ZY-GGV" eventType="touchUpInside" id="n6a-1m-KSV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="19t-e1-0Rb"/>
@@ -47,7 +50,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="XMW-eP-fa6" id="Son-PO-cQS"/>
+                        <outlet property="addButton" destination="XMW-eP-fa6" id="77c-jH-pHS"/>
                         <outlet property="tableView" destination="a4A-Fv-wrY" id="VdK-Ob-Hid"/>
                     </connections>
                 </viewController>

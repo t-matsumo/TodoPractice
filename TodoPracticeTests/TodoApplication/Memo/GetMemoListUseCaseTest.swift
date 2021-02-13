@@ -10,6 +10,10 @@ import XCTest
 
 class GetMemoListUseCaseTest: XCTestCase {
     private class MockRepository : MemoRepository {
+        func saveMemo(memo: Memo) {
+            
+        }
+        
         func getMemos(completion: @escaping ([Memo]) -> Void) {
             completion(self.memoArray)
         }

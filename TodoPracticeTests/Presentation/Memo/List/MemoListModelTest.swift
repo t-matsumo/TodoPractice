@@ -10,11 +10,9 @@ import XCTest
 
 class MemoListModelTest: XCTestCase {
     func testInstansiate() throws {
-        let memoCellDataArray = (1...40).compactMap { n -> MemoCellData? in
-            guard let memo = Memo(title: "title\(n)", content: "content\(n)") else {
-                return nil
-            }
-            let memoData = MemoData(memo: memo)
+        let memoCellDataArray = (1...40).compactMap { n -> MemoCellData in
+            let memo = Memo(title: "title\(n)", content: "content\(n)")
+            let memoData = MemoData(title: memo.title, content: memo.content)
             return MemoCellData(memoData: memoData)
         }
         let model = MemoListModel()
@@ -23,11 +21,9 @@ class MemoListModelTest: XCTestCase {
     }
     
     func testNumberOfRowsInSection() {
-        let memoCellDataArray = (1...40).compactMap { n -> MemoCellData? in
-            guard let memo = Memo(title: "title\(n)", content: "content\(n)") else {
-                return nil
-            }
-            let memoData = MemoData(memo: memo)
+        let memoCellDataArray = (1...40).compactMap { n -> MemoCellData in
+            let memo = Memo(title: "title\(n)", content: "content\(n)")
+            let memoData = MemoData(title: memo.title, content: memo.content)
             return MemoCellData(memoData: memoData)
         }
         let model = MemoListModel()

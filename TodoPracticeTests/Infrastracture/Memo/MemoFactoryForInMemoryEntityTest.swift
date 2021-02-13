@@ -11,10 +11,7 @@ import XCTest
 class MemoFactoryForInMemoryEntityTest: XCTestCase {
     func testCreateMemo() throws {
         let entity = InMemoryMemoEntity(title: "title", content: "content")
-        guard let memo = MemoFactoryForInMemoryEntity.create(entity: entity) else {
-            XCTAssertTrue(false, "Instantiation erroe")
-            return
-        }
+        let memo = MemoFactoryForInMemoryEntity.create(entity: entity)
         XCTAssertEqual(memo.title, entity.title)
         XCTAssertEqual(memo.content, entity.content)
     }

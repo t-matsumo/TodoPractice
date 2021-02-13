@@ -10,13 +10,13 @@ import Foundation
 class Memo {
     let title: String
     let content: String
-    
-    init?(title: String, content: String) {
-        guard (1...200 ~= title.count) else {
-            return nil;
-        }
+     
+    init(title: String, content: String) {
+        precondition(1...200 ~= title.count)
         
         self.title = title
         self.content = content
     }
+    
+    
 }

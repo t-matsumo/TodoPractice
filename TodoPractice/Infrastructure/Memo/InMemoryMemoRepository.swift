@@ -8,11 +8,20 @@
 import Foundation
 
 class InMemoryMemoRepository : MemoRepository {
-    let database = (1...40).compactMap { n in InMemoryMemoEntity(title: "title\(n)", content: "content\(n)") }
+    private static let dataAccessQueue = DispatchQueue(label: "dataAccessQueue")
+    private static var database = (1...40).compactMap { n in InMemoryMemoEntity(title: "title\(n)", content: "content\(n)") }
+    
     func getMemos(completion: @escaping ([Memo]) -> Void) {
-        DispatchQueue.global().async { [weak self] in
-            sleep(2)
-            completion(self?.database.compactMap(MemoFactoryForInMemoryEntity.create) ?? [])
+        InMemoryMemoRepository.dataAccessQueue.async {
+            sleep(1)
+            completion(InMemoryMemoRepository.database.compactMap(MemoFactoryForInMemoryEntity.create).reversed())
+        }
+    }
+    
+    func saveMemo(memo: Memo) {
+        InMemoryMemoRepository.dataAccessQueue.async {
+            sleep(1)
+            InMemoryMemoRepository.database.append(InMemoryMemoEntity(memo: memo))
         }
     }
 }

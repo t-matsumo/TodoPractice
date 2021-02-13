@@ -4,7 +4,7 @@ package TodoDomain.Models.Memo {
     class Memo
     interface MemoRepository
 
-    MemoRepository -- Memo : use for create >
+    MemoRepository --> Memo : use for create
 }
 
 package TodoApplication.Memo {
@@ -12,36 +12,28 @@ package TodoApplication.Memo {
     class MemoData
     class MemoFactory
 
-    CreateMemoUseCase -- MemoData : use for create Memo >
-    MemoFactory -- MemoData : use >
-    MemoFactory -- Memo : create >
-    CreateMemoUseCase --> MemoRepository : use
+    CreateMemoUseCase --> MemoData : use to create Memo
+    MemoFactory --> MemoData : use
+    MemoFactory --> Memo : create
+    CreateMemoUseCase o-- MemoRepository : use
 }
 
 package Presentation.Memo {
-    package Update {
+    package Create {
         class MemoCreateController
-        class MemoCreateModel
-        class MemoDataFactory
-        package Update.View {
-            class ViewC
-        }
-        MemoCreateController --> MemoCreateModel : use to apply data to views
-        MemoCreateController --> ViewC : show
-        MemoDataFactory -- MemoCreateModel : use to create MemoData >
 
-        MemoCreateController --> CreateMemoUseCase
-        MemoCreateController -- MemoData : pass to usecase / use to create MemoCreateModel >
-        MemoDataFactory -- MemoData : create >
+        MemoCreateController o-- CreateMemoUseCase
+        MemoCreateController --> MemoData : pass to usecase
     }
 }
+
 package Infrastructure.Memo {
     class InMemoryMemoRepository implements MemoRepository
     class InMemoryMemoEntity
 
-    InMemoryMemoRepository -- InMemoryMemoEntity : use for update >
-    InMemoryMemoRepository -- Memo : receive from use case >
-    InMemoryMemoEntity -- Memo : use for instantiate >
+    InMemoryMemoRepository --> InMemoryMemoEntity : use to create
+    InMemoryMemoRepository --> Memo : receive from use case
+    InMemoryMemoEntity --> Memo : use for instantiate
 }
 
 @enduml

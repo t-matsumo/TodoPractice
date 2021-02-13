@@ -8,33 +8,22 @@
 import UIKit
 
 class MemoListViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var addButton: UIButton!
     
-    let getMemoUseCase = GetMemoUseCase(memoRepository: InMemoryMemoRepository())
-    let memoListModel = MemoListModel()
+    private let getMemoUseCase = GetMemoUseCase(memoRepository: InMemoryMemoRepository())
+    private let memoListModel = MemoListModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
-        
-        self.getMemoUseCase.getMemos(completion: { [weak self](memoDataList) in
-            // Modelの中でやるべきでは？
-            self?.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        })
+        loadMemos()
     }
     
-    func setupViews() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(UINib(nibName: "MemoCell", bundle: nil), forCellReuseIdentifier: MemoCell.reuseId)
-        
-        addButton.layer.borderColor = UIColor.systemBlue.cgColor
-        addButton.layer.borderWidth = 2.0
+    @IBAction private func onTapAddButton(_ sender: Any) {
+        let vc = CreateMemoViewController.instantiate(delegate: self)
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -52,5 +41,38 @@ extension MemoListViewController : UITableViewDataSource {
         let memo = self.memoListModel.memoCellDataArray[indexPath.row]
         cell.setUpWith(memoCellData: memo)
         return cell
+    }
+}
+
+extension MemoListViewController : CreateMemoViewControllerDelegate {
+    func onTapCloseButton(sender: CreateMemoViewController) {
+        sender.dismiss(animated: true, completion: nil)
+    }
+    
+    func didCreateMemo(sender: CreateMemoViewController) {
+        loadMemos()
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        sender.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MemoListViewController {
+    private func setupViews() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(UINib(nibName: "MemoCell", bundle: nil), forCellReuseIdentifier: MemoCell.reuseId)
+        
+        addButton.layer.borderColor = UIColor.systemBlue.cgColor
+        addButton.layer.borderWidth = 2.0
+    }
+    
+    private func loadMemos() {
+        self.getMemoUseCase.getMemos(completion: { [weak self](memoDataList) in
+            // TODO:Modelの中でやるべきでは？
+            self?.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        })
     }
 }

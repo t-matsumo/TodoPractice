@@ -15,5 +15,14 @@ class InMemoryMemoEntityTest: XCTestCase {
         let entity = InMemoryMemoEntity(title: title, content: content)
         XCTAssertEqual(entity.title, title)
         XCTAssertEqual(entity.content, content)
+        XCTAssertNotNil(entity.id)
+    }
+    
+    func testInstantiateWithMemo() throws {
+        let memo = Memo(title: "title", content: "content")
+        let entity = InMemoryMemoEntity(memo: memo)
+        XCTAssertEqual(entity.title, memo.title)
+        XCTAssertEqual(entity.content, memo.content)
+        XCTAssertNotNil(entity.id)
     }
 }

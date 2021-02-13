@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Memo View Controller-->
+        <scene sceneID="2wk-QV-wUO">
+            <objects>
+                <viewController storyboardIdentifier="CreateMemoViewController" id="bwS-fP-f4G" customClass="CreateMemoViewController" customModule="TodoPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9lc-Cn-Zhu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uup-b4-6e3">
+                                <rect key="frame" x="24" y="144" width="366" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dp-l7-Ebs">
+                                <rect key="frame" x="24" y="234" width="366" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-eT-us4">
+                                <rect key="frame" x="24" y="112" width="82" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9u-h9-4fA">
+                                <rect key="frame" x="24" y="202" width="41" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeI-oT-z6W">
+                                <rect key="frame" x="328" y="292" width="62" height="30"/>
+                                <state key="normal" title="作成する"/>
+                                <connections>
+                                    <action selector="onTapCreateButton:" destination="bwS-fP-f4G" eventType="touchUpInside" id="bmO-1f-amk"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1CB-0U-8dl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="TODO作成" id="0g6-nP-cyd">
+                                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="Hzj-Xl-7w3">
+                                            <connections>
+                                                <action selector="onTapCancelButton:" destination="bwS-fP-f4G" id="ooj-RD-kJo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1文字以上200文字以内" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTq-fz-MTf">
+                                <rect key="frame" x="114" y="119.5" width="126" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vlm-qQ-Y3Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="r9u-h9-4fA" firstAttribute="leading" secondItem="Vlm-qQ-Y3Q" secondAttribute="leading" constant="24" id="0Ga-4b-CHs"/>
+                            <constraint firstItem="pTq-fz-MTf" firstAttribute="firstBaseline" secondItem="7Fh-eT-us4" secondAttribute="firstBaseline" id="8VE-Il-5Oh"/>
+                            <constraint firstItem="1CB-0U-8dl" firstAttribute="top" secondItem="Vlm-qQ-Y3Q" secondAttribute="top" id="B8F-MB-S5Y"/>
+                            <constraint firstItem="NeI-oT-z6W" firstAttribute="top" secondItem="2dp-l7-Ebs" secondAttribute="bottom" constant="24" id="Hur-mG-cgi"/>
+                            <constraint firstItem="2dp-l7-Ebs" firstAttribute="leading" secondItem="Vlm-qQ-Y3Q" secondAttribute="leading" constant="24" id="Hwa-Db-0Qs"/>
+                            <constraint firstItem="Uup-b4-6e3" firstAttribute="leading" secondItem="Vlm-qQ-Y3Q" secondAttribute="leading" constant="24" id="IR7-Vz-t8n"/>
+                            <constraint firstItem="1CB-0U-8dl" firstAttribute="trailing" secondItem="Vlm-qQ-Y3Q" secondAttribute="trailing" id="TxQ-Ma-VJA"/>
+                            <constraint firstItem="7Fh-eT-us4" firstAttribute="leading" secondItem="Vlm-qQ-Y3Q" secondAttribute="leading" constant="24" id="aUr-u9-8HS"/>
+                            <constraint firstItem="Vlm-qQ-Y3Q" firstAttribute="trailing" secondItem="2dp-l7-Ebs" secondAttribute="trailing" constant="24" id="bpx-hc-sV6"/>
+                            <constraint firstItem="pTq-fz-MTf" firstAttribute="leading" secondItem="7Fh-eT-us4" secondAttribute="trailing" constant="8" id="c6W-U1-yqX"/>
+                            <constraint firstItem="Uup-b4-6e3" firstAttribute="top" secondItem="7Fh-eT-us4" secondAttribute="bottom" constant="8" id="dj6-bS-QPO"/>
+                            <constraint firstItem="Vlm-qQ-Y3Q" firstAttribute="trailing" secondItem="NeI-oT-z6W" secondAttribute="trailing" constant="24" id="fR1-bI-LfH"/>
+                            <constraint firstItem="7Fh-eT-us4" firstAttribute="top" secondItem="1CB-0U-8dl" secondAttribute="bottom" constant="24" id="hcC-yI-qeX"/>
+                            <constraint firstItem="2dp-l7-Ebs" firstAttribute="top" secondItem="r9u-h9-4fA" secondAttribute="bottom" constant="8" id="qhq-hp-iLe"/>
+                            <constraint firstItem="Vlm-qQ-Y3Q" firstAttribute="trailing" secondItem="Uup-b4-6e3" secondAttribute="trailing" constant="24" id="t0K-qg-GOL"/>
+                            <constraint firstItem="1CB-0U-8dl" firstAttribute="leading" secondItem="Vlm-qQ-Y3Q" secondAttribute="leading" id="wMX-Fl-Pzh"/>
+                            <constraint firstItem="r9u-h9-4fA" firstAttribute="top" secondItem="Uup-b4-6e3" secondAttribute="bottom" constant="24" id="x3b-mt-6yX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentField" destination="2dp-l7-Ebs" id="HWy-zH-vXl"/>
+                        <outlet property="titleField" destination="Uup-b4-6e3" id="bNf-EC-Vci"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPO-NM-9ka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="484" y="-64"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

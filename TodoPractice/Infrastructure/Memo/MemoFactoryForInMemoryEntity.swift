@@ -8,7 +8,7 @@
 import Foundation
 
 class MemoFactoryForInMemoryEntity {
-    static func create(entity: InMemoryMemoEntity) -> Memo? {
+    static func create(entity: InMemoryMemoEntity) -> Memo {
         Memo(title: entity.title, content: entity.content)
     }
 }

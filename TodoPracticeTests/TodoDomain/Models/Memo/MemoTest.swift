@@ -9,33 +9,24 @@ import XCTest
 @testable import TodoPractice
 
 class MemoTest: XCTestCase {
-    let title = "title"
-    let content = "content"
+    private let title = "title"
+    private let content = "content"
     
-    func testMemoHasTitle() throws {
-        guard let memo = Memo(title: self.title, content: self.content) else {
-            XCTAssertTrue(false, "Instantiation erroe")
-            return
-        }
-
+    func testInstantiate() throws {
+        let memo = Memo(title: self.title, content: self.content)
         XCTAssertEqual(memo.title, title)
-    }
-    
-    func testMemoHasContent() throws {
-        guard let memo = Memo(title: self.title, content: self.content) else {
-            XCTAssertTrue(false, "Instantiation erroe")
-            return
-        }
         XCTAssertEqual(memo.content, content)
     }
-    
+
     func testTitleIsAtLeastOneCharacter() throws {
         XCTAssertNotNil(Memo(title: "1", content: content))
-        XCTAssertNil(Memo(title: "", content: content))
+        // check with `precondition`
+//        XCTAssertThrowsError(Memo(title: "", content: content))
     }
     
     func testTitleIsAtMost200Character() throws {
         XCTAssertNotNil(Memo(title: String(repeating: "a", count: 200), content: content))
-        XCTAssertNil(Memo(title: String(repeating: "a", count: 201), content: content))
+        // check with `precondition`
+//        XCTAssertNil(Memo(title: String(repeating: "a", count: 201), content: content))
     }
 }

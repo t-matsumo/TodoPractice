@@ -8,14 +8,15 @@
 import Foundation
 
 class GetMemoUseCase {
-    let repository: MemoRepository
+    private let repository: MemoRepository
+    
     init(memoRepository: MemoRepository) {
         self.repository = memoRepository
     }
     
     func getMemos(completion: @escaping ([MemoData]) -> Void) {
         self.repository.getMemos { (memos) in
-            completion(memos.map(MemoData.init))
+            completion(memos.map { MemoData(title: $0.title, content: $0.content) })
         }
     }
 }
