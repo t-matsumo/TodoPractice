@@ -9,9 +9,13 @@ import XCTest
 @testable import TodoPractice
 
 class MemoSpecificationTest: XCTestCase {
-    func testValidate() throws {
-        let memoSpec = MemoSpecification()
-        
+    var memoSpec: MemoSpecification!
+    
+    override func setUpWithError() throws {
+        memoSpec = MemoSpecification()
+    }
+    
+    func testValidateTitleLength() throws {
         var result = memoSpec.validate(memoData: MemoData(title: "", content: "content"))
         XCTAssertTrue(result.contains(.titleIsEmpty))
         
@@ -23,8 +27,10 @@ class MemoSpecificationTest: XCTestCase {
         
         result = memoSpec.validate(memoData: MemoData(title: String(repeating: "a", count: 51), content: "content"))
         XCTAssertTrue(result.contains(.titleIsOverLimit))
-        
-        result = memoSpec.validate(memoData: MemoData(title: "a", content: ""))
+    }
+    
+    func testValidateContentLength() throws {
+        var result = memoSpec.validate(memoData: MemoData(title: "a", content: ""))
         XCTAssertTrue(result.isEmpty)
         
         result = memoSpec.validate(memoData: MemoData(title: "a", content: String(repeating: "a", count: 200)))
@@ -32,8 +38,10 @@ class MemoSpecificationTest: XCTestCase {
         
         result = memoSpec.validate(memoData: MemoData(title: "a", content: String(repeating: "a", count: 201)))
         XCTAssertTrue(result.contains(.contentIsOverLimit))
-        
-        result = memoSpec.validate(memoData: MemoData(title: "", content: String(repeating: "a", count: 201)))
+    }
+    
+    func testValidateHaveErrors() throws {
+        var result = memoSpec.validate(memoData: MemoData(title: "", content: String(repeating: "a", count: 201)))
         XCTAssertTrue(result.contains(.titleIsEmpty))
         XCTAssertTrue(result.contains(.contentIsOverLimit))
         

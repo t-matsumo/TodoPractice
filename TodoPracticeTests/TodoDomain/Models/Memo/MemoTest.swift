@@ -25,9 +25,19 @@ class MemoTest: XCTestCase {
 //        XCTAssertThrowsError(Memo(title: "", content: content))
     }
     
-    func testTitleIsAtMost200Character() throws {
-        XCTAssertNotNil(Memo(title: String(repeating: "a", count: 200), content: content))
+    func testTitleIsAtMost50Character() throws {
+        XCTAssertNotNil(Memo(title: String(repeating: "a", count: 50), content: content))
         // check with `precondition`
-//        XCTAssertNil(Memo(title: String(repeating: "a", count: 201), content: content))
+//        XCTAssertNil(Memo(title: String(repeating: "a", count: 51), content: content))
+    }
+    
+    func testContentIsAtLeastZeroCharacter() throws {
+        XCTAssertNotNil(Memo(title: "title", content: ""))
+    }
+    
+    func testContentIsAtMost200Character() throws {
+        XCTAssertNotNil(Memo(title: "title", content: String(repeating: "a", count: 200)))
+        // check with `precondition`
+//        XCTAssertNotNil(Memo(title: "title", content: String(repeating: "a", count: 201)))
     }
 }

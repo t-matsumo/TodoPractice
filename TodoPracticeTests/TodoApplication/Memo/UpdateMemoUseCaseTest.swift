@@ -10,19 +10,11 @@ import XCTest
 
 class UpdateMemoUseCaseTest: XCTestCase {
     private class MockRepository : MemoRepository {
-        var memoArray: [Memo]
+        var memoArray: [Memo] = []
         
-        init(memoArray: [Memo]) {
-            self.memoArray = memoArray
-        }
+        func getMemos(completion: @escaping ([Memo]) -> Void) { }
         
-        func getMemos(completion: @escaping ([Memo]) -> Void) {
-            completion(self.memoArray)
-        }
-        
-        func saveMemo(memo: Memo) {
-            self.memoArray.append(memo)
-        }
+        func saveMemo(memo: Memo) { }
         
         func updateMemo(memo: Memo) {
             let index = self.memoArray.firstIndex { entity -> Bool in
@@ -38,7 +30,8 @@ class UpdateMemoUseCaseTest: XCTestCase {
     
     func testUpdateMemo() throws {
         let memo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
-        let repository = MockRepository(memoArray: [memo])
+        let repository = MockRepository()
+        repository.memoArray = [memo]
         let usecase = UpdateMemoUseCase(repository: repository)
         
         let updateMemoData = MemoData(title: "title2", content: "content2", id: memo.id)
@@ -53,7 +46,8 @@ class UpdateMemoUseCaseTest: XCTestCase {
     
     func testFailUpdateMemoEmptyTitle() throws {
         let memo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
-        let repository = MockRepository(memoArray: [memo])
+        let repository = MockRepository()
+        repository.memoArray = [memo]
         let useCase = UpdateMemoUseCase(repository: repository)
 
         let updateMemoData = MemoData(title: "", content: "content2", id: memo.id)
@@ -71,7 +65,8 @@ class UpdateMemoUseCaseTest: XCTestCase {
     
     func testFailUpdateMemoOverTitleLength() throws {
         let memo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
-        let repository = MockRepository(memoArray: [memo])
+        let repository = MockRepository()
+        repository.memoArray = [memo]
         let useCase = UpdateMemoUseCase(repository: repository)
 
         let updateMemoData = MemoData(title: String(repeating: "a", count: 51), content: "content2", id: memo.id)
@@ -89,7 +84,8 @@ class UpdateMemoUseCaseTest: XCTestCase {
     
     func testFailUpdateMemoOverContentLength() throws {
         let memo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
-        let repository = MockRepository(memoArray: [memo])
+        let repository = MockRepository()
+        repository.memoArray = [memo]
         let useCase = UpdateMemoUseCase(repository: repository)
 
         let updateMemoData = MemoData(title: "title2", content: String(repeating: "a", count: 201), id: memo.id)
@@ -107,7 +103,8 @@ class UpdateMemoUseCaseTest: XCTestCase {
     
     func testFailUpdateMemoOverContenAndTitletLength() throws {
         let memo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
-        let repository = MockRepository(memoArray: [memo])
+        let repository = MockRepository()
+        repository.memoArray = [memo]
         let useCase = UpdateMemoUseCase(repository: repository)
 
         let updateMemoData = MemoData(title: String(repeating: "a", count: 51), content: String(repeating: "a", count: 201), id: memo.id)

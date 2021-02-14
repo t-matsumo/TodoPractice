@@ -9,7 +9,7 @@ import XCTest
 @testable import TodoPractice
 
 class MemoFactoryForMemoDataTest: XCTestCase {
-    func testExample() throws {
+    func testCreateMemo() throws {
         let originalMemo = Memo(title: "title", content: "content")
         let memoData = MemoData(title: originalMemo.title, content: originalMemo.content)
         let memo = MemoFactoryForMemoData.create(memoData: memoData)
@@ -18,7 +18,7 @@ class MemoFactoryForMemoDataTest: XCTestCase {
         XCTAssertNil(memo.id)
     }
     
-    func testExampleWithId() throws {
+    func testCreateMemoWithId() throws {
         let originalMemo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
         let memoData = MemoData(title: originalMemo.title, content: originalMemo.content, id: originalMemo.id)
         let memo = MemoFactoryForMemoData.create(memoData: memoData)

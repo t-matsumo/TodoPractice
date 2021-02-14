@@ -13,7 +13,8 @@ class Memo {
     let id: String?
      
     init(title: String, content: String, id: String? = nil) {
-        precondition(1...200 ~= title.count)
+        precondition(1...50 ~= title.count)
+        precondition(0...200 ~= content.count)
         
         self.title = title
         self.content = content

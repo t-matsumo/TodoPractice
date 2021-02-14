@@ -10,48 +10,36 @@ import XCTest
 
 class SaveMemoUseCaseTest: XCTestCase {
     private class MockRepository : MemoRepository {
-        var memoArray: [Memo]
+        var memoArray: [Memo] = []
         
-        init(memoArray: [Memo]) {
-            self.memoArray = memoArray
-        }
-        
-        func getMemos(completion: @escaping ([Memo]) -> Void) {
-            completion(self.memoArray)
-        }
+        func getMemos(completion: @escaping ([Memo]) -> Void) { }
         
         func saveMemo(memo: Memo) {
             self.memoArray.append(memo)
         }
         
-        func updateMemo(memo: Memo) {
-            
-        }
+        func updateMemo(memo: Memo) { }
         
         func removeMemo(id: String) { }
     }
     
     func testSaveMemo() throws {
-        let repository = MockRepository(memoArray: [])
+        let repository = MockRepository()
+        repository.memoArray = []
         let useCase = SaveMemoUseCase(repository: repository)
         
         let memo = Memo(title: "title", content: "content")
         let memoData = MemoData(title: memo.title, content: memo.content)
         useCase.save(memoData: memoData) { errors in }
         
-        let exp = expectation(description: "getMemo")
-        repository.getMemos { (memoArray) in
-            XCTAssertEqual(memoArray.count, 1)
-            XCTAssertEqual(memoArray.first!.title, memo.title)
-            XCTAssertEqual(memoArray.first!.content, memo.content)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertEqual(repository.memoArray.count, 1)
+        XCTAssertEqual(repository.memoArray.first!.title, memo.title)
+        XCTAssertEqual(repository.memoArray.first!.content, memo.content)
     }
     
     func testFailSaveMemoEmptyTitle() throws {
-        let repository = MockRepository(memoArray: [])
+        let repository = MockRepository()
+        repository.memoArray = []
         let useCase = SaveMemoUseCase(repository: repository)
         
         let memoData = MemoData(title: "", content: "content")
@@ -66,7 +54,8 @@ class SaveMemoUseCaseTest: XCTestCase {
     }
     
     func testFailSaveMemoOverTitleLength() throws {
-        let repository = MockRepository(memoArray: [])
+        let repository = MockRepository()
+        repository.memoArray = []
         let useCase = SaveMemoUseCase(repository: repository)
         
         let memoData = MemoData(title: String(repeating: "a", count: 51), content: "content")
@@ -81,7 +70,8 @@ class SaveMemoUseCaseTest: XCTestCase {
     }
     
     func testFailSaveMemoOverContentLength() throws {
-        let repository = MockRepository(memoArray: [])
+        let repository = MockRepository()
+        repository.memoArray = []
         let useCase = SaveMemoUseCase(repository: repository)
         
         let memoData = MemoData(title: "title", content: String(repeating: "a", count: 201))
@@ -96,7 +86,8 @@ class SaveMemoUseCaseTest: XCTestCase {
     }
     
     func testFailSaveMemoOverContenAndTitletLength() throws {
-        let repository = MockRepository(memoArray: [])
+        let repository = MockRepository()
+        repository.memoArray = []
         let useCase = SaveMemoUseCase(repository: repository)
         
         let memoData = MemoData(title: String(repeating: "a", count: 51), content: String(repeating: "a", count: 201))
