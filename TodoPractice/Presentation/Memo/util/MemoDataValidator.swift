@@ -1,5 +1,5 @@
 //
-//  MemoSpecification.swift
+//  MemoDataValidator.swift
 //  TodoPractice
 //
 //  Created by tatsuki_matsumoto on 2021/02/13.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum MemoSpecificationValidateError {
+enum MemoDataValidateError {
     case titleIsEmpty
     case titleIsOverLimit
     case contentIsOverLimit
 }
 
-class MemoSpecification {
-    func validate(memoData: MemoData) -> [MemoSpecificationValidateError] {
-        var result: [MemoSpecificationValidateError] = []
+class MemoDataValidator {
+    func validate(memoData: MemoData) -> [MemoDataValidateError] {
+        var result: [MemoDataValidateError] = []
         
         if memoData.title.isEmpty {
             result.append(.titleIsEmpty)

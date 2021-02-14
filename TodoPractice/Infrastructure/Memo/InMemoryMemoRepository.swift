@@ -14,18 +14,24 @@ class InMemoryMemoRepository : MemoRepository {
     func getMemos(completion: @escaping ([Memo]) -> Void) {
         InMemoryMemoRepository.dataAccessQueue.async {
             sleep(1)
-            completion(InMemoryMemoRepository.database.compactMap(MemoFactoryForInMemoryEntity.create).reversed())
+            let memos: [Memo] = InMemoryMemoRepository.database.compactMap(MemoFactoryForInMemoryEntity.create).reversed()
+            DispatchQueue.main.async {
+                completion(memos)
+            }
         }
     }
     
-    func saveMemo(memo: Memo) {
+    func saveMemo(memo: Memo, completion: @escaping () -> Void) {
         InMemoryMemoRepository.dataAccessQueue.async {
             sleep(1)
             InMemoryMemoRepository.database.append(InMemoryMemoEntity(memo: memo))
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
     
-    func updateMemo(memo: Memo) {
+    func updateMemo(memo: Memo, completion: @escaping () -> Void) {
         InMemoryMemoRepository.dataAccessQueue.async {
             sleep(1)
             let index = InMemoryMemoRepository.database.firstIndex { entity -> Bool in
@@ -34,13 +40,19 @@ class InMemoryMemoRepository : MemoRepository {
             if let index = index {
                 InMemoryMemoRepository.database[index] = InMemoryMemoEntity(memo: memo)
             }
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
     
-    func removeMemo(id: String) {
+    func removeMemo(id: String, completion: @escaping () -> Void) {
         InMemoryMemoRepository.dataAccessQueue.async {
             sleep(1)
             InMemoryMemoRepository.database.removeAll { $0.id == id }
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
 }

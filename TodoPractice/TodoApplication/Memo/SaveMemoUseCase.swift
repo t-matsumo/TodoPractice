@@ -14,12 +14,9 @@ class SaveMemoUseCase {
         self.repository = repository
     }
     
-    func save(memoData: MemoData, completionHandler: ([MemoSpecificationValidateError]) -> Void) {
-        let memoSpec = MemoSpecification()
-        let result = memoSpec.validate(memoData: memoData)
-        if (result.isEmpty) {
-            self.repository.saveMemo(memo: MemoFactoryForMemoData.create(memoData: memoData))
+    func save(memoData: MemoData, completionHandler: @escaping () -> Void) {
+        self.repository.saveMemo(memo: MemoFactoryForMemoData.create(memoData: memoData)) {
+            completionHandler()
         }
-        completionHandler(result)
     }
 }

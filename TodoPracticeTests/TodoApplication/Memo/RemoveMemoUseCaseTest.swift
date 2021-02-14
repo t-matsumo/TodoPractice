@@ -14,11 +14,11 @@ class RemoveMemoUseCaseTest: XCTestCase {
         
         func getMemos(completion: @escaping ([Memo]) -> Void) { }
         
-        func saveMemo(memo: Memo) { }
+        func saveMemo(memo: Memo, completion: @escaping () -> Void) { }
         
-        func updateMemo(memo: Memo) { }
+        func updateMemo(memo: Memo, completion: @escaping () -> Void) { }
         
-        func removeMemo(id: String) {
+        func removeMemo(id: String, completion: @escaping () -> Void) {
             self.memoArray.removeAll { $0.id == id }
         }
     }
@@ -30,7 +30,7 @@ class RemoveMemoUseCaseTest: XCTestCase {
         XCTAssertFalse(repository.memoArray.isEmpty)
         
         let useCase = RemoveMemoUseCase(repository: repository)
-        useCase.remove(id: memo.id!)
+        useCase.remove(id: memo.id!) {}
         
         XCTAssertTrue(repository.memoArray.isEmpty)
     }

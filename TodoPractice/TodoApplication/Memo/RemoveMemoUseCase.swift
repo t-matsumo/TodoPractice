@@ -14,7 +14,9 @@ class RemoveMemoUseCase {
         self.repository = repository
     }
     
-    func remove(id: String) {
-        self.repository.removeMemo(id: id)
+    func remove(id: String, completionHandler: @escaping () -> Void) {
+        self.repository.removeMemo(id: id) {
+            completionHandler()
+        }
     }
 }

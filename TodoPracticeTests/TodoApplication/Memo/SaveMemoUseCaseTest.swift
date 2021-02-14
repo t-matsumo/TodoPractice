@@ -14,13 +14,13 @@ class SaveMemoUseCaseTest: XCTestCase {
         
         func getMemos(completion: @escaping ([Memo]) -> Void) { }
         
-        func saveMemo(memo: Memo) {
+        func saveMemo(memo: Memo, completion: @escaping () -> Void) {
             self.memoArray.append(memo)
         }
         
-        func updateMemo(memo: Memo) { }
+        func updateMemo(memo: Memo, completion: @escaping () -> Void) { }
         
-        func removeMemo(id: String) { }
+        func removeMemo(id: String, completion: @escaping () -> Void) { }
     }
     
     func testSaveMemo() throws {
@@ -30,75 +30,10 @@ class SaveMemoUseCaseTest: XCTestCase {
         
         let memo = Memo(title: "title", content: "content")
         let memoData = MemoData(title: memo.title, content: memo.content)
-        useCase.save(memoData: memoData) { errors in }
+        useCase.save(memoData: memoData) { }
         
         XCTAssertEqual(repository.memoArray.count, 1)
         XCTAssertEqual(repository.memoArray.first!.title, memo.title)
         XCTAssertEqual(repository.memoArray.first!.content, memo.content)
-    }
-    
-    func testFailSaveMemoEmptyTitle() throws {
-        let repository = MockRepository()
-        repository.memoArray = []
-        let useCase = SaveMemoUseCase(repository: repository)
-        
-        let memoData = MemoData(title: "", content: "content")
-        let exp = expectation(description: "saveMemo")
-        useCase.save(memoData: memoData) { (saveErrors) in
-            XCTAssertTrue(saveErrors.contains(.titleIsEmpty))
-            XCTAssertTrue(repository.memoArray.count == 0)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1.0, handler: nil)
-    }
-    
-    func testFailSaveMemoOverTitleLength() throws {
-        let repository = MockRepository()
-        repository.memoArray = []
-        let useCase = SaveMemoUseCase(repository: repository)
-        
-        let memoData = MemoData(title: String(repeating: "a", count: 51), content: "content")
-        let exp = expectation(description: "saveMemo")
-        useCase.save(memoData: memoData) { (saveErrors) in
-            XCTAssertTrue(saveErrors.contains(.titleIsOverLimit))
-            XCTAssertTrue(repository.memoArray.count == 0)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1.0, handler: nil)
-    }
-    
-    func testFailSaveMemoOverContentLength() throws {
-        let repository = MockRepository()
-        repository.memoArray = []
-        let useCase = SaveMemoUseCase(repository: repository)
-        
-        let memoData = MemoData(title: "title", content: String(repeating: "a", count: 201))
-        let exp = expectation(description: "saveMemo")
-        useCase.save(memoData: memoData) { (saveErrors) in
-            XCTAssertTrue(saveErrors.contains(.contentIsOverLimit))
-            XCTAssertTrue(repository.memoArray.count == 0)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1.0, handler: nil)
-    }
-    
-    func testFailSaveMemoOverContenAndTitletLength() throws {
-        let repository = MockRepository()
-        repository.memoArray = []
-        let useCase = SaveMemoUseCase(repository: repository)
-        
-        let memoData = MemoData(title: String(repeating: "a", count: 51), content: String(repeating: "a", count: 201))
-        let exp = expectation(description: "saveMemo")
-        useCase.save(memoData: memoData) { (saveErrors) in
-            XCTAssertTrue(saveErrors.contains(.contentIsOverLimit))
-            XCTAssertTrue(saveErrors.contains(.titleIsOverLimit))
-            XCTAssertTrue(repository.memoArray.count == 0)
-            exp.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1.0, handler: nil)
     }
 }

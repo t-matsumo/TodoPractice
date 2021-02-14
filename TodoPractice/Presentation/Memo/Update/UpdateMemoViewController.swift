@@ -16,6 +16,7 @@ class UpdateMemoViewController: UIViewController {
     
     private var updateMemoUseCase: UpdateMemoUseCase!
     private var removeMemoUseCase: RemoveMemoUseCase!
+    private let memoDataValidator = MemoDataValidator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,15 +56,23 @@ extension UpdateMemoViewController {
     
     @IBAction func onTapUpdateButton(_ sender: Any) {
         let memoData = MemoData(title: self.titleField.text!, content: self.contentField.text!, id: self.viewModel.id)
-        self.updateMemoUseCase.update(memoData: memoData) { errors in
-            if (errors.isEmpty) {
-                self.delegate?.didUpdateMemo(sender: self)
-            }
+        // TODO viewmodel作ったほうが良さそう？
+        guard memoDataValidator.validate(memoData: memoData).isEmpty else {
+            return
+        }
+        
+        self.updateMemoUseCase.update(memoData: memoData) {
+            self.delegate?.didUpdateMemo(sender: self)
+            
         }
     }
     
     @IBAction func onTapDeleteButton(_ sender: Any) {
-        self.removeMemoUseCase.remove(id: self.viewModel.id)
-        self.delegate?.didDeleteMemo(sender: self)
+        self.removeMemoUseCase.remove(id: self.viewModel.id) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.delegate?.didDeleteMemo(sender: self)
+        }
     }
 }

@@ -16,11 +16,11 @@ class GetMemoListUseCaseTest: XCTestCase {
             completion(self.memoArray)
         }
         
-        func saveMemo(memo: Memo) { }
+        func saveMemo(memo: Memo, completion: @escaping () -> Void) { }
         
-        func updateMemo(memo: Memo) { }
+        func updateMemo(memo: Memo, completion: @escaping () -> Void) { }
         
-        func removeMemo(id: String) { }
+        func removeMemo(id: String, completion: @escaping () -> Void) { }
     }
     
     func testGetAllMemos() throws {
