@@ -57,7 +57,6 @@ extension MemoListViewController : CreateMemoViewControllerDelegate {
     
     func didCreateMemo(sender: CreateMemoViewController) {
         loadMemos()
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         sender.dismiss(animated: true, completion: nil)
     }
 }

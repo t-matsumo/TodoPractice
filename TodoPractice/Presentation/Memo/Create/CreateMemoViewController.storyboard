@@ -26,21 +26,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-eT-us4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="やること" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-eT-us4">
                                 <rect key="frame" x="24" y="112" width="82" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9u-h9-4fA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="めも" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9u-h9-4fA">
                                 <rect key="frame" x="24" y="202" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeI-oT-z6W">
-                                <rect key="frame" x="328" y="292" width="62" height="30"/>
-                                <state key="normal" title="作成する"/>
+                                <rect key="frame" x="267" y="292" width="123" height="30"/>
+                                <state key="normal" title="りすとに追加する"/>
                                 <connections>
                                     <action selector="onTapCreateButton:" destination="bwS-fP-f4G" eventType="touchUpInside" id="bmO-1f-amk"/>
                                 </connections>
@@ -48,8 +48,8 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1CB-0U-8dl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="TODO作成" id="0g6-nP-cyd">
-                                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="Hzj-Xl-7w3">
+                                    <navigationItem title="やることを書く" id="0g6-nP-cyd">
+                                        <barButtonItem key="leftBarButtonItem" title="やめとく" id="Hzj-Xl-7w3">
                                             <connections>
                                                 <action selector="onTapCancelButton:" destination="bwS-fP-f4G" id="ooj-RD-kJo"/>
                                             </connections>

@@ -9,7 +9,18 @@ import Foundation
 
 class InMemoryMemoRepository : MemoRepository {
     private static let dataAccessQueue = DispatchQueue(label: "dataAccessQueue")
-    private static var database = (1...40).compactMap { n in InMemoryMemoEntity(title: "title\(n)", content: "content\(n)") }
+//    private static var database = (1...40).compactMap { n in InMemoryMemoEntity(title: "title\(n)", content: "content\(n)") }
+//    private static var database:[InMemoryMemoEntity] = []
+    private static var database = [
+        InMemoryMemoEntity(title: "ねる(つ∀-)ｵﾔｽﾐｰ", content: "何時にしよう？"),
+        InMemoryMemoEntity(title: "よるのおやつ(*´艸｀*)", content: ""),
+        InMemoryMemoEntity(title: "よるごはん(´～｀)ﾓｸﾞﾓｸﾞ", content: "ごはん！！"),
+        InMemoryMemoEntity(title: "おやつ(^_^)", content: ""),
+        InMemoryMemoEntity(title: "おひるね(。-ω-)zzz. . . (。ﾟωﾟ) ﾊｯ!", content: ""),
+        InMemoryMemoEntity(title: "ひるごはん！！", content: "何食べよう？"),
+        InMemoryMemoEntity(title: "朝ごはん((o(´∀｀)o))ﾜｸﾜｸ", content: "遅く起きたら昼ごはんと一緒"),
+        InMemoryMemoEntity(title: "起きる！！", content: "12時まででいいや"),
+    ]
     
     func getMemos(completion: @escaping ([Memo]) -> Void) {
         InMemoryMemoRepository.dataAccessQueue.async {

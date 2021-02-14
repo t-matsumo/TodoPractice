@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a4A-Fv-wrY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMW-eP-fa6">
@@ -37,15 +37,24 @@
                                     <action selector="onTapAddButton:" destination="2Jb-ZY-GGV" eventType="touchUpInside" id="n6a-1m-KSV"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55q-39-Bh4">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="やること" id="nC5-6F-hPY"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="19t-e1-0Rb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="55q-39-Bh4" firstAttribute="top" secondItem="19t-e1-0Rb" secondAttribute="top" id="0YZ-Nu-TBO"/>
+                            <constraint firstItem="55q-39-Bh4" firstAttribute="leading" secondItem="Euj-gr-ceQ" secondAttribute="leading" id="0eE-kM-BtE"/>
                             <constraint firstItem="a4A-Fv-wrY" firstAttribute="leading" secondItem="19t-e1-0Rb" secondAttribute="leading" id="6y7-Q0-YoN"/>
                             <constraint firstItem="19t-e1-0Rb" firstAttribute="trailing" secondItem="XMW-eP-fa6" secondAttribute="trailing" constant="24" id="EVJ-33-vnF"/>
                             <constraint firstItem="19t-e1-0Rb" firstAttribute="bottom" secondItem="XMW-eP-fa6" secondAttribute="bottom" constant="24" id="EhC-Vk-W1K"/>
                             <constraint firstItem="19t-e1-0Rb" firstAttribute="bottom" secondItem="a4A-Fv-wrY" secondAttribute="bottom" id="O6o-YQ-dhB"/>
-                            <constraint firstItem="a4A-Fv-wrY" firstAttribute="top" secondItem="19t-e1-0Rb" secondAttribute="top" id="a8n-VZ-BVC"/>
+                            <constraint firstItem="a4A-Fv-wrY" firstAttribute="top" secondItem="55q-39-Bh4" secondAttribute="bottom" id="a8n-VZ-BVC"/>
+                            <constraint firstItem="19t-e1-0Rb" firstAttribute="trailing" secondItem="55q-39-Bh4" secondAttribute="trailing" id="sUj-N9-dVv"/>
                             <constraint firstItem="19t-e1-0Rb" firstAttribute="trailing" secondItem="a4A-Fv-wrY" secondAttribute="trailing" id="sqt-HY-ySJ"/>
                         </constraints>
                     </view>

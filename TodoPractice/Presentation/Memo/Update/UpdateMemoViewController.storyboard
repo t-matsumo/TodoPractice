@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="変更" id="eG6-gW-0Ff">
-                                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="ucf-uQ-kUH">
+                                        <barButtonItem key="leftBarButtonItem" title="やめとく" id="ucf-uQ-kUH">
                                             <connections>
                                                 <action selector="onTapCloseButton:" destination="5KC-Ce-l6c" id="xLZ-g8-Me9"/>
                                             </connections>
@@ -33,13 +33,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6G-Gc-tQF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="やること" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6G-Gc-tQF">
                                 <rect key="frame" x="24" y="112" width="82" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnH-qz-VTf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="めも" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnH-qz-VTf">
                                 <rect key="frame" x="24" y="202" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -62,8 +62,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cU8-Vo-8tE">
-                                <rect key="frame" x="328" y="292" width="62" height="30"/>
-                                <state key="normal" title="変更する"/>
+                                <rect key="frame" x="252" y="292" width="138" height="30"/>
+                                <state key="normal" title="リストに反映させる"/>
                                 <connections>
                                     <action selector="onTapUpdateButton:" destination="5KC-Ce-l6c" eventType="touchUpInside" id="A7T-85-iEw"/>
                                 </connections>
