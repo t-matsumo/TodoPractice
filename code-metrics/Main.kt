@@ -3,7 +3,7 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 
 val br = BufferedReader(InputStreamReader(System.`in`))
-val out = PrintWriter("./code-metrics.md")
+val out = PrintWriter("./code-metrics/code-metrics.md")
 
 fun main() {
     br.use {
