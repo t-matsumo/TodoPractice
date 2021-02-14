@@ -1,0 +1,29 @@
+name: code-metrics
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  create-metrics:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies (Java)
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
+    - name: Install dependencies (Kotlin)
+      uses: fwilhe2/setup-kotlin@main
+
+    - name: Run calc metrics
+      run: sh code-metrics/main.sh
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-metrics
+        path: code-metrics/code-metrics.md
