@@ -32,6 +32,8 @@ class UpdateMemoUseCaseTest: XCTestCase {
                 self.memoArray[index] = memo
             }
         }
+        
+        func removeMemo(id: String) { }
     }
     
     func testUpdateMemo() throws {

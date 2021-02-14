@@ -71,6 +71,11 @@ extension MemoListViewController : UpdateMemoViewControllerDelegate {
         loadMemos()
         sender.dismiss(animated: true, completion: nil)
     }
+    
+    func didDeleteMemo(sender: UpdateMemoViewController) {
+        loadMemos()
+        sender.dismiss(animated: true, completion: nil)
+    }
 }
 extension MemoListViewController {
     private func setupViews() {

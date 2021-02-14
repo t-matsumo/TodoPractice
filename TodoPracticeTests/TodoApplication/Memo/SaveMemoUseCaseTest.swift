@@ -27,6 +27,8 @@ class SaveMemoUseCaseTest: XCTestCase {
         func updateMemo(memo: Memo) {
             
         }
+        
+        func removeMemo(id: String) { }
     }
     
     func testSaveMemo() throws {

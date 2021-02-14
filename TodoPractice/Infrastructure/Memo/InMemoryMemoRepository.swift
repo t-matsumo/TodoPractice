@@ -36,4 +36,11 @@ class InMemoryMemoRepository : MemoRepository {
             }
         }
     }
+    
+    func removeMemo(id: String) {
+        InMemoryMemoRepository.dataAccessQueue.async {
+            sleep(1)
+            InMemoryMemoRepository.database.removeAll { $0.id == id }
+        }
+    }
 }

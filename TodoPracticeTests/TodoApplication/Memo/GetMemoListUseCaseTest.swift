@@ -27,6 +27,8 @@ class GetMemoListUseCaseTest: XCTestCase {
         func updateMemo(memo: Memo) {
             
         }
+        
+        func removeMemo(id: String) { }
     }
     
     func testGetAllMemos() throws {

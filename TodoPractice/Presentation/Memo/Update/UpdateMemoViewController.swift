@@ -14,7 +14,8 @@ class UpdateMemoViewController: UIViewController {
     private weak var delegate: UpdateMemoViewControllerDelegate?
     private var viewModel: UpdateMemoViewModel!
     
-    private let updateMemoUseCase = UpdateMemoUseCase(repository: InMemoryMemoRepository())
+    private var updateMemoUseCase: UpdateMemoUseCase!
+    private var removeMemoUseCase: RemoveMemoUseCase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +25,18 @@ class UpdateMemoViewController: UIViewController {
 }
 
 extension UpdateMemoViewController {
-    static func instantiate(memoData: MemoData, delegate: UpdateMemoViewControllerDelegate) -> UIViewController {
+    static func instantiate(
+        memoData: MemoData,
+        delegate: UpdateMemoViewControllerDelegate,
+        repository: MemoRepository = InMemoryMemoRepository()
+    ) -> UIViewController {
         let vcName = String(describing: self)
         let vc = UIStoryboard(name: vcName, bundle: nil).instantiateViewController(identifier: vcName) as! UpdateMemoViewController
         vc.delegate = delegate
         vc.viewModel = UpdateMemoViewModel(memoData: memoData)
+        vc.updateMemoUseCase = UpdateMemoUseCase(repository: repository)
+        vc.removeMemoUseCase = RemoveMemoUseCase(repository: repository)
+        
         return vc
     }
 }
@@ -52,5 +60,10 @@ extension UpdateMemoViewController {
                 self.delegate?.didUpdateMemo(sender: self)
             }
         }
+    }
+    
+    @IBAction func onTapDeleteButton(_ sender: Any) {
+        self.removeMemoUseCase.remove(id: self.viewModel.id)
+        self.delegate?.didDeleteMemo(sender: self)
     }
 }

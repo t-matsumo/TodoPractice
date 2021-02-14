@@ -25,6 +25,11 @@
                                                 <action selector="onTapCloseButton:" destination="5KC-Ce-l6c" id="xLZ-g8-Me9"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="削除する" id="mj1-eY-MXJ">
+                                            <connections>
+                                                <action selector="onTapDeleteButton:" destination="5KC-Ce-l6c" id="A0F-je-5Qe"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
