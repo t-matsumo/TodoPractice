@@ -30,7 +30,7 @@ class MemoListViewController: UIViewController {
 extension MemoListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let memo = self.memoListModel.memoCellDataArray[indexPath.row]
-        let memoData = MemoData(title: memo.title, content: memo.content, id: memo.id)
+        let memoData = MemoData(title: memo.title, content: memo.content, order: memo.order, id: memo.id)
         let vc = UpdateMemoViewController.instantiate(memoData: memoData, delegate: self)
         present(vc, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -88,8 +88,7 @@ extension MemoListViewController {
     
     private func loadMemos() {
         self.getMemoUseCase.getMemos(completion: { [weak self](memoDataList) in
-            // TODO:ViewModelの中でやるべきでは？
-            self?.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
+            self?.memoListModel.memoCellDataArray = memoDataList.map { MemoCellData(memoData: $0) }
             self?.tableView.reloadData()
         })
     }

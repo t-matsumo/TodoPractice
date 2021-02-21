@@ -29,18 +29,19 @@ class UpdateMemoUseCaseTest: XCTestCase {
     }
     
     func testUpdateMemo() throws {
-        let memo = Memo(title: "title", content: "content", id: NSUUID().uuidString)
+        let memo = Memo(title: "title", content: "content", order: 65535.0, id: NSUUID().uuidString)
         let repository = MockRepository()
         repository.memoArray = [memo]
         let usecase = UpdateMemoUseCase(repository: repository)
         
-        let updateMemoData = MemoData(title: "title2", content: "content2", id: memo.id)
+        let updateMemoData = MemoData(title: "title2", content: "content2", order: 1.0, id: memo.id)
         usecase.update(memoData: updateMemoData) {}
         
         XCTAssertNotEqual(repository.memoArray.first?.title, memo.title)
         XCTAssertNotEqual(repository.memoArray.first?.content, memo.content)
         XCTAssertEqual(repository.memoArray.first?.title, updateMemoData.title)
         XCTAssertEqual(repository.memoArray.first?.content, updateMemoData.content)
+        XCTAssertEqual(repository.memoArray.first?.order, updateMemoData.order)
         XCTAssertTrue(repository.memoArray.count == 1)
     }
 }

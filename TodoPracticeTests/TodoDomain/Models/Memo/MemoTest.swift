@@ -11,12 +11,21 @@ import XCTest
 class MemoTest: XCTestCase {
     private let title = "title"
     private let content = "content"
+    private let order = 65535.0
+    private let id = UUID().uuidString
     
     func testInstantiate() throws {
         let memo = Memo(title: self.title, content: self.content)
         XCTAssertEqual(memo.title, title)
         XCTAssertEqual(memo.content, content)
         XCTAssertNil(memo.id)
+        XCTAssertNil(memo.order)
+        
+        let memo2 = Memo(title: self.title, content: self.content, order: self.order, id: id)
+        XCTAssertEqual(memo2.title, title)
+        XCTAssertEqual(memo2.content, content)
+        XCTAssertEqual(memo2.order, order)
+        XCTAssertEqual(memo2.id, id)
     }
 
     func testTitleIsAtLeastOneCharacter() throws {

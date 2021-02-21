@@ -24,14 +24,16 @@ class GetMemoListUseCaseTest: XCTestCase {
     }
     
     func testGetAllMemos() throws {
-        let memoArray = (1...40).compactMap { n in Memo(title: "title\(n)", content: "content\(n)") }
+        let memoArray = (1...40).compactMap { n in Memo(title: "title\(n)", content: "content\(n)", order: (65535.0 + Double(n))) }
         let repository = MockRepository()
         repository.memoArray = memoArray
         let useCase = GetMemoUseCase(memoRepository: repository)
         
         let exp = expectation(description: "getMemo")
         useCase.getMemos { (memoDataArray) in
-            XCTAssertTrue(zip(memoDataArray, memoArray).allSatisfy { memoData, memo in memoData.title == memo.title && memoData.content == memo.content })
+            XCTAssertTrue(zip(memoDataArray, memoArray).allSatisfy {
+                memoData, memo in memoData.title == memo.title && memoData.content == memo.content && memoData.order == memo.order
+            })
             exp.fulfill()
         }
         

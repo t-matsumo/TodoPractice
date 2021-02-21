@@ -9,6 +9,6 @@ import Foundation
 
 class MemoFactoryForMemoData {
     static func create(memoData: MemoData) -> Memo {
-        Memo(title: memoData.title, content: memoData.content, id: memoData.id)
+        Memo(title: memoData.title, content: memoData.content, order: memoData.order, id: memoData.id)
     }
 }

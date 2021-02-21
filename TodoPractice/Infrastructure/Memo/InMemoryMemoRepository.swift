@@ -12,20 +12,20 @@ class InMemoryMemoRepository : MemoRepository {
 //    private static var database = (1...40).compactMap { n in InMemoryMemoEntity(title: "title\(n)", content: "content\(n)") }
 //    private static var database:[InMemoryMemoEntity] = []
     private static var database = [
-        InMemoryMemoEntity(title: "ねる(つ∀-)ｵﾔｽﾐｰ", content: "何時にしよう？"),
-        InMemoryMemoEntity(title: "よるのおやつ(*´艸｀*)", content: ""),
-        InMemoryMemoEntity(title: "よるごはん(´～｀)ﾓｸﾞﾓｸﾞ", content: "ごはん！！"),
-        InMemoryMemoEntity(title: "おやつ(^_^)", content: ""),
-        InMemoryMemoEntity(title: "おひるね(。-ω-)zzz. . . (。ﾟωﾟ) ﾊｯ!", content: ""),
-        InMemoryMemoEntity(title: "ひるごはん！！", content: "何食べよう？"),
-        InMemoryMemoEntity(title: "朝ごはん((o(´∀｀)o))ﾜｸﾜｸ", content: "遅く起きたら昼ごはんと一緒"),
-        InMemoryMemoEntity(title: "起きる！！", content: "12時まででいいや"),
+        InMemoryMemoEntity(title: "ねる(つ∀-)ｵﾔｽﾐｰ", content: "何時にしよう？", order: 65535.0),
+        InMemoryMemoEntity(title: "よるのおやつ(*´艸｀*)", content: "", order: 65535.0 * 2),
+        InMemoryMemoEntity(title: "よるごはん(´～｀)ﾓｸﾞﾓｸﾞ", content: "ごはん！！", order: 65535.0 * 4),
+        InMemoryMemoEntity(title: "おやつ(^_^)", content: "", order: 65535.0 * 8),
+        InMemoryMemoEntity(title: "おひるね(。-ω-)zzz. . . (。ﾟωﾟ) ﾊｯ!", content: "", order: 65535.0 * 16),
+        InMemoryMemoEntity(title: "ひるごはん！！", content: "何食べよう？", order: 65535.0 * 32),
+        InMemoryMemoEntity(title: "朝ごはん((o(´∀｀)o))ﾜｸﾜｸ", content: "遅く起きたら昼ごはんと一緒", order: 65535.0 * 64),
+        InMemoryMemoEntity(title: "起きる！！", content: "12時まででいいや", order: 65535.0 * 128),
     ]
     
     func getMemos(completion: @escaping ([Memo]) -> Void) {
         InMemoryMemoRepository.dataAccessQueue.async {
             sleep(1)
-            let memos: [Memo] = InMemoryMemoRepository.database.compactMap(MemoFactoryForInMemoryEntity.create).reversed()
+            let memos: [Memo] = InMemoryMemoRepository.database.sorted { $0.order < $1.order }.compactMap { MemoFactoryForInMemoryEntity.create(entity: $0) }
             DispatchQueue.main.async {
                 completion(memos)
             }

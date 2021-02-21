@@ -10,10 +10,11 @@ import XCTest
 
 class UpdateMemoViewModelTest: XCTestCase {
     func testInstantiate() throws {
-        let memoData = MemoData(title: "title", content: "conetnt", id: NSUUID().uuidString)
+        let memoData = MemoData(title: "title", content: "conetnt", order: 65535.0, id: NSUUID().uuidString)
         let viewModel = UpdateMemoViewModel(memoData: memoData)
         XCTAssertEqual(viewModel.title, memoData.title)
         XCTAssertEqual(viewModel.content, memoData.content)
         XCTAssertEqual(viewModel.id, memoData.id)
+        XCTAssertEqual(viewModel.order, memoData.order)
     }
 }
