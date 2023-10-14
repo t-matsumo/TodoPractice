@@ -10,9 +10,9 @@ import Foundation
 class Memo {
     let title: String
     let content: String
-    let id: String?
+    let id: String
      
-    init(title: String, content: String, id: String? = nil) {
+    init(title: String, content: String, id: String) {
         precondition(1...50 ~= title.count)
         precondition(0...200 ~= content.count)
         

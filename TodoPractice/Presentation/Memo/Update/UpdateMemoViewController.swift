@@ -29,7 +29,7 @@ extension UpdateMemoViewController {
     static func instantiate(
         memoData: MemoData,
         delegate: UpdateMemoViewControllerDelegate,
-        repository: MemoRepository = InMemoryMemoRepository()
+        repository: MemoRepository
     ) -> UIViewController {
         let vcName = String(describing: self)
         let vc = UIStoryboard(name: vcName, bundle: nil).instantiateViewController(identifier: vcName) as! UpdateMemoViewController

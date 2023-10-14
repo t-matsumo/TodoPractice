@@ -11,18 +11,30 @@ class MemoListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addButton: UIButton!
     
-    private let getMemoUseCase = GetMemoUseCase(memoRepository: InMemoryMemoRepository())
+    var container: PersistentContainer!
+    
+    private var getMemoUseCase: GetMemoUseCase!
     private let memoListModel = MemoListModel()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard container != nil else {
+            fatalError("This view needs a persistent container.")
+        }
+        getMemoUseCase = GetMemoUseCase(memoRepository: CoreDataMemoRepository(persistentContainer: container))
         
         setupViews()
         loadMemos()
     }
     
     @IBAction private func onTapAddButton(_ sender: Any) {
-        let vc = CreateMemoViewController.instantiate(delegate: self)
+        let vc = CreateMemoViewController.instantiate(
+            delegate: self,
+            saveMemoUseCase: SaveMemoUseCase(repository: CoreDataMemoRepository(persistentContainer: container))
+        )
         present(vc, animated: true, completion: nil)
     }
 }
@@ -31,7 +43,7 @@ extension MemoListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let memo = self.memoListModel.memoCellDataArray[indexPath.row]
         let memoData = MemoData(title: memo.title, content: memo.content, id: memo.id)
-        let vc = UpdateMemoViewController.instantiate(memoData: memoData, delegate: self)
+        let vc = UpdateMemoViewController.instantiate(memoData: memoData, delegate: self, repository: CoreDataMemoRepository(persistentContainer: container))
         present(vc, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }

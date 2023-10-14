@@ -13,10 +13,8 @@ class UpdateMemoViewModel {
     let id: String
     
     init(memoData: MemoData) {
-        precondition(memoData.id != nil)
-        
         self.title = memoData.title
         self.content = memoData.content
-        self.id = memoData.id!
+        self.id = memoData.id
     }
 }

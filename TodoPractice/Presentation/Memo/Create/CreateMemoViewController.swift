@@ -13,7 +13,7 @@ class CreateMemoViewController: UIViewController {
     
     private weak var delegate: CreateMemoViewControllerDelegate?
     
-    private let saveMemoUseCase = SaveMemoUseCase(repository: InMemoryMemoRepository())
+    private var saveMemoUseCase: SaveMemoUseCase!
     private let memoDataValidator = MemoDataValidator()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +21,21 @@ class CreateMemoViewController: UIViewController {
 }
 
 extension CreateMemoViewController {
-    static func instantiate(delegate: CreateMemoViewControllerDelegate) -> UIViewController {
+    static func instantiate(
+        delegate: CreateMemoViewControllerDelegate,
+        saveMemoUseCase: SaveMemoUseCase
+    ) -> UIViewController {
         let vcName = String(describing: self)
         let vc = UIStoryboard(name: vcName, bundle: nil).instantiateViewController(identifier: vcName) as! CreateMemoViewController
         vc.delegate = delegate
+        vc.saveMemoUseCase = saveMemoUseCase
         return vc
     }
 }
 
 extension CreateMemoViewController {
     @IBAction private func onTapCreateButton(_ sender: Any) {
-        let memoData = MemoData(title: self.titleField.text ?? "", content: self.contentField.text ?? "")
+        let memoData = MemoData(title: self.titleField.text ?? "", content: self.contentField.text ?? "", id: UUID().uuidString)
         // TODO viewmodel作ったほうが良さそう？
         guard memoDataValidator.validate(memoData: memoData).isEmpty else {
             return

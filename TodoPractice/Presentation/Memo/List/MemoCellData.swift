@@ -10,7 +10,7 @@ import Foundation
 class MemoCellData {
     let title: String
     let content: String
-    let id: String?
+    let id: String
     
     init(memoData: MemoData) {
         self.title = memoData.title
