@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UpdateMemoViewControllerDelegate: class {
+protocol UpdateMemoViewControllerDelegate: AnyObject {
     func onTapCloseButton(sender: UpdateMemoViewController)
     func didUpdateMemo(sender: UpdateMemoViewController)
     func didDeleteMemo(sender: UpdateMemoViewController)

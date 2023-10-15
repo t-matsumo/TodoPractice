@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CreateMemoViewControllerDelegate: class {
+protocol CreateMemoViewControllerDelegate: AnyObject {
     func onTapCloseButton(sender: CreateMemoViewController)
     func didCreateMemo(sender: CreateMemoViewController)
 }
