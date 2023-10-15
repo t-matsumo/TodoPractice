@@ -61,17 +61,15 @@ extension UpdateMemoViewController {
             return
         }
         
-        self.updateMemoUseCase.update(memoData: memoData) {
+        Task {
+            await self.updateMemoUseCase.update(memoData: memoData)
             self.delegate?.didUpdateMemo(sender: self)
-            
         }
     }
     
     @IBAction func onTapDeleteButton(_ sender: Any) {
-        self.removeMemoUseCase.remove(id: self.viewModel.id) { [weak self] in
-            guard let self = self else {
-                return
-            }
+        Task {
+            await self.removeMemoUseCase.remove(id: self.viewModel.id)
             self.delegate?.didDeleteMemo(sender: self)
         }
     }

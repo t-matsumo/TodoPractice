@@ -14,9 +14,8 @@ class GetMemoUseCase {
         self.repository = memoRepository
     }
     
-    func getMemos(completion: @escaping ([MemoData]) -> Void) {
-        self.repository.getMemos { (memos) in
-            completion(memos.map { MemoData(title: $0.title, content: $0.content, id: $0.id) })
-        }
+    func getMemos() async -> [MemoData] {
+        let memos = await self.repository.getMemos()
+        return memos.map { MemoData(title: $0.title, content: $0.content, id: $0.id) }
     }
 }

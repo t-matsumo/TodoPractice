@@ -14,9 +14,7 @@ class SaveMemoUseCase {
         self.repository = repository
     }
     
-    func save(memoData: MemoData, completionHandler: @escaping () -> Void) {
-        self.repository.saveMemo(memo: MemoFactoryForMemoData.create(memoData: memoData)) {
-            completionHandler()
-        }
+    func save(memoData: MemoData) async {
+        await self.repository.saveMemo(memo: MemoFactoryForMemoData.create(memoData: memoData))
     }
 }

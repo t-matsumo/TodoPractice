@@ -99,10 +99,11 @@ extension MemoListViewController {
     }
     
     private func loadMemos() {
-        self.getMemoUseCase.getMemos(completion: { [weak self](memoDataList) in
+        Task {
+            let memoDataList = await self.getMemoUseCase.getMemos()
             // TODO:ViewModelの中でやるべきでは？
-            self?.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
-            self?.tableView.reloadData()
-        })
+            self.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
+            self.tableView.reloadData()
+        }
     }
 }

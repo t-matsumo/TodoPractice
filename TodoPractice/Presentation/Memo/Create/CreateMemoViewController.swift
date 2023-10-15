@@ -41,10 +41,8 @@ extension CreateMemoViewController {
             return
         }
         
-        self.saveMemoUseCase.save(memoData: memoData) { [weak self] in
-            guard let self = self else {
-                return
-            }
+        Task {
+            await self.saveMemoUseCase.save(memoData: memoData)
             self.delegate?.didCreateMemo(sender: self)
         }
     }

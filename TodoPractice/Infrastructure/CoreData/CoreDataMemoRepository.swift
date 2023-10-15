@@ -31,47 +31,57 @@ class CoreDataMemoRepository : MemoRepository {
 //        }
     }
     
-    func getMemos(completion: @escaping ([Memo]) -> Void) {
-        let request = MemoCoreDataEntity.fetchRequest()
-        do {
-            let memos = try persistentContainer.viewContext.fetch(request)
-            completion(memos.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
-        } catch {
-            fatalError()
+    func getMemos() async -> [Memo] {
+        return await withCheckedContinuation { continuation in
+            persistentContainer.performBackgroundTask { context -> Void in
+                let request = MemoCoreDataEntity.fetchRequest()
+                do {
+                    let memos = try context.fetch(request)
+                    continuation.resume(returning: memos.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
+                } catch {
+                    fatalError()
+                }
+            }
         }
     }
     
-    func saveMemo(memo: Memo, completion: @escaping () -> Void) {
-        let memoEntity = findMemoEntity(byId: memo.id) ?? NSEntityDescription.insertNewObject(forEntityName: "Memo", into: persistentContainer.viewContext) as! MemoCoreDataEntity
-        memoEntity.id = memo.id
-        memoEntity.title = memo.title
-        memoEntity.content = memo.content
-        
-        persistentContainer.saveContext()
-        completion()
-    }
-    
-    func updateMemo(memo: Memo, completion: @escaping () -> Void) {
-        saveMemo(memo: memo, completion: completion)
-    }
-    
-    func removeMemo(id: String, completion: @escaping () -> Void) {
-        guard let entity = findMemoEntity(byId: id) else {
-            completion()
-            return
+    func saveMemo(memo: Memo) async {
+        await withCheckedContinuation { continuation in
+            let context = persistentContainer.newBackgroundContext()
+            
+            let memoEntity = findMemoEntity(byId: memo.id, context: context) ?? NSEntityDescription.insertNewObject(forEntityName: "Memo", into: context) as! MemoCoreDataEntity
+            memoEntity.id = memo.id
+            memoEntity.title = memo.title
+            memoEntity.content = memo.content
+            
+            persistentContainer.saveContext(backgroundContext: context)
+            continuation.resume()
         }
-        persistentContainer.viewContext.delete(entity)
-        persistentContainer.saveContext()
-        completion()
+    }
+    
+    func removeMemo(id: String) async {
+        await withCheckedContinuation { continuation in
+            let context = persistentContainer.newBackgroundContext()
+            guard let entity = findMemoEntity(byId: id, context: context) else {
+                continuation.resume()
+                return
+            }
+            context.delete(entity)
+            persistentContainer.saveContext(backgroundContext: context)
+            continuation.resume()
+        }
     }
 }
 
 private extension CoreDataMemoRepository {
-    func findMemoEntity(byId id: String) -> MemoCoreDataEntity? {
+    func findMemoEntity(
+        byId id: String,
+        context: NSManagedObjectContext
+    ) -> MemoCoreDataEntity? {
         let request = MemoCoreDataEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         do {
-            return try persistentContainer.viewContext.fetch(request).first
+            return try context.fetch(request).first
         } catch {
             fatalError()
         }

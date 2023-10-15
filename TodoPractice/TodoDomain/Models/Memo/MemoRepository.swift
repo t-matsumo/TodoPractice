@@ -8,11 +8,9 @@
 import Foundation
 
 protocol MemoRepository {
-    func getMemos(completion: @escaping ([Memo]) -> Void)
+    func getMemos() async -> [Memo]
     /// completion処理完了後に呼ばれる
-    func saveMemo(memo: Memo, completion: @escaping () -> Void)
+    func saveMemo(memo: Memo) async
     /// completion処理完了後に呼ばれる
-    func updateMemo(memo: Memo, completion: @escaping () -> Void)
-    /// completion処理完了後に呼ばれる
-    func removeMemo(id: String, completion: @escaping () -> Void)
+    func removeMemo(id: String) async
 }
