@@ -57,13 +57,21 @@ extension UpdateMemoViewController {
     @IBAction func onTapUpdateButton(_ sender: Any) {
         let memoData = MemoData(title: self.titleField.text!, content: self.contentField.text!, id: self.viewModel.id)
         // TODO viewmodel作ったほうが良さそう？
-        guard memoDataValidator.validate(memoData: memoData).isEmpty else {
+        guard memoDataValidator.validate(
+            title: self.titleField.text!,
+            content: self.contentField.text!
+        ).isEmpty else {
             return
         }
         
         Task {
+            let request = UpdateMemoUseCaseRequest(
+                title: memoData.title,
+                content: memoData.content,
+                id: memoData.id
+            )
             do {
-                try await self.updateMemoUseCase.update(memoData: memoData)
+                try await self.updateMemoUseCase.execute(request)
             } catch {
                 print("更新失敗！！！！") // というような表示にしたい
                 return
@@ -75,7 +83,7 @@ extension UpdateMemoViewController {
     @IBAction func onTapDeleteButton(_ sender: Any) {
         Task {
             do {
-                try await self.removeMemoUseCase.remove(id: self.viewModel.id)
+                try await self.removeMemoUseCase.execute(by: self.viewModel.id)
             } catch {
                 print("削除失敗！！！！") // というような表示にしたい
                 return

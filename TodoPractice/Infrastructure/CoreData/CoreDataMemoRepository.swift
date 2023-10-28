@@ -8,6 +8,14 @@
 import Foundation
 import CoreData
 
+private struct CoreDataMemoId: MemoId {
+    let id: String
+    
+    func value() -> String {
+        id
+    }
+}
+
 class CoreDataMemoRepository : MemoRepository {
     private let persistentContainer: PersistentContainer
     
@@ -31,6 +39,10 @@ class CoreDataMemoRepository : MemoRepository {
 //        }
     }
     
+    func createId() -> MemoId {
+        CoreDataMemoId(id: UUID().uuidString)
+    }
+    
     func getAll() async -> [Memo] {
         return await withCheckedContinuation { continuation in
             persistentContainer.performBackgroundTask { context -> Void in
@@ -42,16 +54,16 @@ class CoreDataMemoRepository : MemoRepository {
                     assertionFailure()
                     memos = []
                 }
-                continuation.resume(returning: memos.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
+                continuation.resume(returning: memos.map { Memo(title: $0.title!, content: $0.content!, id: CoreDataMemoId(id: $0.id!)) })
             }
         }
     }
     
-    func find(byId id: String) async -> Memo? {
+    func find(by id: MemoId) async -> Memo? {
         await withCheckedContinuation { continuation in
             persistentContainer.performBackgroundTask { context -> Void in
-                let memo = self.find(byId: id, context: context)
-                continuation.resume(returning: memo.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
+                let memo = self.find(by: id, context: context)
+                continuation.resume(returning: memo.map { Memo(title: $0.title!, content: $0.content!, id: CoreDataMemoId(id: $0.id!)) })
             }
         }
     }
@@ -59,13 +71,13 @@ class CoreDataMemoRepository : MemoRepository {
     func save(_ target: Memo) async throws {
         try await withCheckedThrowingContinuation { continuation in
             persistentContainer.performBackgroundTask { context -> Void in
-                guard let memoEntity = self.find(byId: target.id, context: context) ?? NSEntityDescription.insertNewObject(forEntityName: "Memo", into: context) as? MemoCoreDataEntity else {
+                guard let memoEntity = self.find(by: target.id, context: context) ?? NSEntityDescription.insertNewObject(forEntityName: "Memo", into: context) as? MemoCoreDataEntity else {
                     assertionFailure()
                     continuation.resume()
                     return
                 }
                 
-                memoEntity.id = target.id
+                memoEntity.id = target.id.value()
                 memoEntity.title = target.title
                 memoEntity.content = target.content
                 
@@ -80,10 +92,10 @@ class CoreDataMemoRepository : MemoRepository {
         }
     }
     
-    func remove(byId id: String) async throws {
+    func remove(_ target: Memo) async throws {
         try await withCheckedThrowingContinuation { continuation in
             persistentContainer.performBackgroundTask { context -> Void in
-                guard let entity = self.find(byId: id, context: context) else {
+                guard let entity = self.find(by: target.id, context: context) else {
                     continuation.resume()
                     return
                 }
@@ -103,11 +115,11 @@ class CoreDataMemoRepository : MemoRepository {
 
 private extension CoreDataMemoRepository {
     func find(
-        byId id: String,
+        by id: MemoId,
         context: NSManagedObjectContext
     ) -> MemoCoreDataEntity? {
         let request = MemoCoreDataEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id)
+        request.predicate = NSPredicate(format: "id == %@", id.value())
         do {
             return try context.fetch(request).first
         } catch {

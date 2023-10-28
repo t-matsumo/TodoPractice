@@ -7,9 +7,14 @@
 
 import Foundation
 
+protocol MemoId {
+    func value() -> String
+}
+
 protocol MemoRepository {
+    func createId() -> MemoId
     func getAll() async -> [Memo]
-    func find(byId id: String) async -> Memo?
+    func find(by id: MemoId) async -> Memo?
     func save(_ target: Memo) async throws
-    func remove(byId id: String) async throws
+    func remove(_ target: Memo) async throws
 }

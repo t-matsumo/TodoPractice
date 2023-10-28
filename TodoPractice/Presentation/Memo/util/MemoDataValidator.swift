@@ -14,18 +14,18 @@ enum MemoDataValidateError {
 }
 
 class MemoDataValidator {
-    func validate(memoData: MemoData) -> [MemoDataValidateError] {
+    func validate(title: String, content: String) -> [MemoDataValidateError] {
         var result: [MemoDataValidateError] = []
         
-        if memoData.title.isEmpty {
+        if title.isEmpty {
             result.append(.titleIsEmpty)
         }
         
-        if memoData.title.count > 50 {
+        if title.count > 50 {
             result.append(.titleIsOverLimit)
         }
         
-        if memoData.content.count > 200 {
+        if content.count > 200 {
             result.append(.contentIsOverLimit)
         }
         

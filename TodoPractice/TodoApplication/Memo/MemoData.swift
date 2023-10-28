@@ -7,14 +7,8 @@
 
 import Foundation
 
-class MemoData {
+struct MemoData {
     let title: String
     let content: String
-    let id: String
-    
-    init(title: String, content: String, id: String) {
-        self.title = title
-        self.content = content
-        self.id = id
-    }
+    let id: MemoId
 }

@@ -21,6 +21,6 @@ struct InMemoryMemoEntity {
     init(memo: Memo) {
         self.title = memo.title
         self.content = memo.content
-        self.id = memo.id
+        self.id = memo.id.value()
     }
 }

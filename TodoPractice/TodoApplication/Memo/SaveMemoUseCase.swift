@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct SaveMemoUseCaseRequest {
+    let title: String
+    let content: String
+}
+
 class SaveMemoUseCase {
     private let repository: MemoRepository
     
@@ -14,7 +19,13 @@ class SaveMemoUseCase {
         self.repository = repository
     }
     
-    func save(memoData: MemoData) async throws {
-        try await self.repository.save(MemoFactoryForMemoData.create(memoData: memoData))
+    func execute(_ request: SaveMemoUseCaseRequest) async throws {
+        let memo = Memo(
+            title: request.title,
+            content: request.content,
+            id: self.repository.createId()
+        )
+
+        try await self.repository.save(memo)
     }
 }

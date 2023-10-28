@@ -7,15 +7,25 @@
 
 import Foundation
 
+struct UpdateMemoUseCaseRequest {
+    let title: String
+    let content: String
+    let id: MemoId
+}
+
 class UpdateMemoUseCase {
-    let repository: MemoRepository
+    private let repository: MemoRepository
     
     init(repository: MemoRepository) {
         self.repository = repository
     }
     
-    
-    func update(memoData: MemoData) async throws {
-        try await self.repository.save(MemoFactoryForMemoData.create(memoData: memoData))
+    func execute(_ request: UpdateMemoUseCaseRequest) async throws {
+        let memo = Memo(
+            title: request.title,
+            content: request.content,
+            id: request.id
+        )
+        try await self.repository.save(memo)
     }
 }

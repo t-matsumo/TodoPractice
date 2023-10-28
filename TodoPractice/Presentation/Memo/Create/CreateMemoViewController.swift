@@ -35,15 +35,21 @@ extension CreateMemoViewController {
 
 extension CreateMemoViewController {
     @IBAction private func onTapCreateButton(_ sender: Any) {
-        let memoData = MemoData(title: self.titleField.text ?? "", content: self.contentField.text ?? "", id: UUID().uuidString)
         // TODO viewmodel作ったほうが良さそう？
-        guard memoDataValidator.validate(memoData: memoData).isEmpty else {
+        guard memoDataValidator.validate(
+            title: self.titleField.text ?? "",
+            content: self.contentField.text ?? ""
+        ).isEmpty else {
             return
         }
         
         Task {
+            let request = SaveMemoUseCaseRequest(
+                title: self.titleField.text ?? "",
+                content: self.contentField.text ?? ""
+            )
             do {
-                try await self.saveMemoUseCase.save(memoData: memoData)
+                try await self.saveMemoUseCase.execute(request)
             } catch {
                 print("保存失敗") // のような表示にしたい
                 return

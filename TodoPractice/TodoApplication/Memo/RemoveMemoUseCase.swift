@@ -8,13 +8,16 @@
 import Foundation
 
 class RemoveMemoUseCase {
-    let repository: MemoRepository
+    private let repository: MemoRepository
     
     init(repository: MemoRepository) {
         self.repository = repository
     }
     
-    func remove(id: String) async throws {
-        try await self.repository.remove(byId: id)
+    func execute(by id: MemoId) async throws {
+        guard let memo = await self.repository.find(by: id) else {
+            return
+        }
+        try await self.repository.remove(memo)
     }
 }

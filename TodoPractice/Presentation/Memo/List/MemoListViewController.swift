@@ -13,7 +13,7 @@ class MemoListViewController: UIViewController {
     
     var container: PersistentContainer!
     
-    private var getMemoUseCase: GetMemoUseCase!
+    private var getAllMemoUseCase: GetAllMemoUseCase!
     private let memoListModel = MemoListModel()
     
     
@@ -24,7 +24,7 @@ class MemoListViewController: UIViewController {
         guard container != nil else {
             fatalError("This view needs a persistent container.")
         }
-        getMemoUseCase = GetMemoUseCase(memoRepository: CoreDataMemoRepository(persistentContainer: container))
+        getAllMemoUseCase = GetAllMemoUseCase(memoRepository: CoreDataMemoRepository(persistentContainer: container))
         
         setupViews()
         loadMemos()
@@ -100,7 +100,7 @@ extension MemoListViewController {
     
     private func loadMemos() {
         Task {
-            let memoDataList = await self.getMemoUseCase.getMemos()
+            let memoDataList = await self.getAllMemoUseCase.execute()
             // TODO:ViewModelの中でやるべきでは？
             self.memoListModel.memoCellDataArray = memoDataList.map(MemoCellData.init)
             self.tableView.reloadData()

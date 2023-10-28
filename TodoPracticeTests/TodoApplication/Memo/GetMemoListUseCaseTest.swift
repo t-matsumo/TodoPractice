@@ -10,17 +10,25 @@ import XCTest
 
 class GetMemoListUseCaseTest: XCTestCase {
     private class MockRepository : MemoRepository {
+        func createId() -> TodoPractice.MemoId {
+            
+        }
+        
+        func getAll() async -> [TodoPractice.Memo] {
+            return self.memoArray
+        }
+        
+        func find(by id: TodoPractice.MemoId) async -> TodoPractice.Memo? {        }
+        
+        func save(_ target: TodoPractice.Memo) async throws { }
+        
+        func remove(_ target: TodoPractice.Memo) async throws { }
+        
         var memoArray: [Memo] = []
         
         func getMemos(completion: @escaping ([Memo]) -> Void) {
             completion(self.memoArray)
         }
-        
-        func saveMemo(memo: Memo, completion: @escaping () -> Void) { }
-        
-        func updateMemo(memo: Memo, completion: @escaping () -> Void) { }
-        
-        func removeMemo(id: String, completion: @escaping () -> Void) { }
     }
     
     func testGetAllMemos() throws {
