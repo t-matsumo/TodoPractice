@@ -42,7 +42,12 @@ extension CreateMemoViewController {
         }
         
         Task {
-            await self.saveMemoUseCase.save(memoData: memoData)
+            do {
+                try await self.saveMemoUseCase.save(memoData: memoData)
+            } catch {
+                print("保存失敗") // のような表示にしたい
+                return
+            }
             self.delegate?.didCreateMemo(sender: self)
         }
     }

@@ -15,7 +15,7 @@ class GetMemoUseCase {
     }
     
     func getMemos() async -> [MemoData] {
-        let memos = await self.repository.getMemos()
+        let memos = await self.repository.getAll()
         return memos.map { MemoData(title: $0.title, content: $0.content, id: $0.id) }
     }
 }

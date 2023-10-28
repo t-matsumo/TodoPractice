@@ -8,9 +8,8 @@
 import Foundation
 
 protocol MemoRepository {
-    func getMemos() async -> [Memo]
-    /// completion処理完了後に呼ばれる
-    func saveMemo(memo: Memo) async
-    /// completion処理完了後に呼ばれる
-    func removeMemo(id: String) async
+    func getAll() async -> [Memo]
+    func find(byId id: String) async -> Memo?
+    func save(_ target: Memo) async throws
+    func remove(byId id: String) async throws
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class InMemoryMemoEntity {
+struct InMemoryMemoEntity {
     let title: String
     let content: String
     let id: String
@@ -21,6 +21,6 @@ class InMemoryMemoEntity {
     init(memo: Memo) {
         self.title = memo.title
         self.content = memo.content
-        self.id = memo.id ?? NSUUID().uuidString
+        self.id = memo.id
     }
 }

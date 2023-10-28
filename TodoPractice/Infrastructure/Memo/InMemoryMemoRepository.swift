@@ -22,7 +22,7 @@ class InMemoryMemoRepository : MemoRepository {
         InMemoryMemoEntity(title: "起きる！！", content: "12時まででいいや"),
     ]
     
-    func getMemos() async -> [Memo] {
+    func getAll() async -> [Memo] {
         return await withCheckedContinuation { continuation in
             InMemoryMemoRepository.dataAccessQueue.async {
                 sleep(1)
@@ -32,17 +32,27 @@ class InMemoryMemoRepository : MemoRepository {
         }
     }
     
-    func saveMemo(memo: Memo) async {
+    func find(byId id: String) async -> Memo? {
+        return await withCheckedContinuation { continuation in
+            InMemoryMemoRepository.dataAccessQueue.async {
+                sleep(1)
+                let memo: Memo? = InMemoryMemoRepository.database.first { $0.id == id}.map(MemoFactoryForInMemoryEntity.create)
+                continuation.resume(returning: memo)
+            }
+        }
+    }
+    
+    func save(_ target: Memo) async {
         await withCheckedContinuation { continuation in
             InMemoryMemoRepository.dataAccessQueue.async {
                 sleep(1)
-                InMemoryMemoRepository.database.append(InMemoryMemoEntity(memo: memo))
+                InMemoryMemoRepository.database.append(InMemoryMemoEntity(memo: target))
                 continuation.resume()
             }
         }
     }
     
-    func removeMemo(id: String) async {
+    func remove(byId id: String) async {
         await withCheckedContinuation { continuation in
             InMemoryMemoRepository.dataAccessQueue.async {
                 sleep(1)

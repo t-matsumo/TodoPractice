@@ -31,50 +31,78 @@ class CoreDataMemoRepository : MemoRepository {
 //        }
     }
     
-    func getMemos() async -> [Memo] {
+    func getAll() async -> [Memo] {
         return await withCheckedContinuation { continuation in
             persistentContainer.performBackgroundTask { context -> Void in
                 let request = MemoCoreDataEntity.fetchRequest()
+                let memos: [MemoCoreDataEntity]
                 do {
-                    let memos = try context.fetch(request)
-                    continuation.resume(returning: memos.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
+                    memos = try context.fetch(request)
                 } catch {
-                    fatalError()
+                    assertionFailure()
+                    memos = []
                 }
+                continuation.resume(returning: memos.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
             }
         }
     }
     
-    func saveMemo(memo: Memo) async {
+    func find(byId id: String) async -> Memo? {
         await withCheckedContinuation { continuation in
-            let context = persistentContainer.newBackgroundContext()
-            
-            let memoEntity = findMemoEntity(byId: memo.id, context: context) ?? NSEntityDescription.insertNewObject(forEntityName: "Memo", into: context) as! MemoCoreDataEntity
-            memoEntity.id = memo.id
-            memoEntity.title = memo.title
-            memoEntity.content = memo.content
-            
-            persistentContainer.saveContext(backgroundContext: context)
-            continuation.resume()
+            persistentContainer.performBackgroundTask { context -> Void in
+                let memo = self.find(byId: id, context: context)
+                continuation.resume(returning: memo.map { Memo(title: $0.title!, content: $0.content!, id: $0.id!) })
+            }
         }
     }
     
-    func removeMemo(id: String) async {
-        await withCheckedContinuation { continuation in
-            let context = persistentContainer.newBackgroundContext()
-            guard let entity = findMemoEntity(byId: id, context: context) else {
+    func save(_ target: Memo) async throws {
+        try await withCheckedThrowingContinuation { continuation in
+            persistentContainer.performBackgroundTask { context -> Void in
+                guard let memoEntity = self.find(byId: target.id, context: context) ?? NSEntityDescription.insertNewObject(forEntityName: "Memo", into: context) as? MemoCoreDataEntity else {
+                    assertionFailure()
+                    continuation.resume()
+                    return
+                }
+                
+                memoEntity.id = target.id
+                memoEntity.title = target.title
+                memoEntity.content = target.content
+                
+                do {
+                    try self.persistentContainer.saveContext(backgroundContext: context)
+                } catch {
+                    continuation.resume(throwing: error)
+                    return
+                }
                 continuation.resume()
-                return
             }
-            context.delete(entity)
-            persistentContainer.saveContext(backgroundContext: context)
-            continuation.resume()
+        }
+    }
+    
+    func remove(byId id: String) async throws {
+        try await withCheckedThrowingContinuation { continuation in
+            persistentContainer.performBackgroundTask { context -> Void in
+                guard let entity = self.find(byId: id, context: context) else {
+                    continuation.resume()
+                    return
+                }
+                context.delete(entity)
+                
+                do {
+                    try self.persistentContainer.saveContext(backgroundContext: context)
+                } catch {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                continuation.resume()
+            }
         }
     }
 }
 
 private extension CoreDataMemoRepository {
-    func findMemoEntity(
+    func find(
         byId id: String,
         context: NSManagedObjectContext
     ) -> MemoCoreDataEntity? {
@@ -83,7 +111,8 @@ private extension CoreDataMemoRepository {
         do {
             return try context.fetch(request).first
         } catch {
-            fatalError()
+            assertionFailure()
+            return nil
         }
     }
 }

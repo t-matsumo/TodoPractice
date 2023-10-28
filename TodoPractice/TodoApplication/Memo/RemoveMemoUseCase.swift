@@ -14,7 +14,7 @@ class RemoveMemoUseCase {
         self.repository = repository
     }
     
-    func remove(id: String) async {
-        await self.repository.removeMemo(id: id)
+    func remove(id: String) async throws {
+        try await self.repository.remove(byId: id)
     }
 }

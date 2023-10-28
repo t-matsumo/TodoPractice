@@ -14,7 +14,7 @@ class SaveMemoUseCase {
         self.repository = repository
     }
     
-    func save(memoData: MemoData) async {
-        await self.repository.saveMemo(memo: MemoFactoryForMemoData.create(memoData: memoData))
+    func save(memoData: MemoData) async throws {
+        try await self.repository.save(MemoFactoryForMemoData.create(memoData: memoData))
     }
 }

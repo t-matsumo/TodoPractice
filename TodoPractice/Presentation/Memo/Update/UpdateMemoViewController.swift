@@ -62,14 +62,24 @@ extension UpdateMemoViewController {
         }
         
         Task {
-            await self.updateMemoUseCase.update(memoData: memoData)
+            do {
+                try await self.updateMemoUseCase.update(memoData: memoData)
+            } catch {
+                print("更新失敗！！！！") // というような表示にしたい
+                return
+            }
             self.delegate?.didUpdateMemo(sender: self)
         }
     }
     
     @IBAction func onTapDeleteButton(_ sender: Any) {
         Task {
-            await self.removeMemoUseCase.remove(id: self.viewModel.id)
+            do {
+                try await self.removeMemoUseCase.remove(id: self.viewModel.id)
+            } catch {
+                print("削除失敗！！！！") // というような表示にしたい
+                return
+            }
             self.delegate?.didDeleteMemo(sender: self)
         }
     }
